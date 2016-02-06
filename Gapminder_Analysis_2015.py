@@ -908,8 +908,9 @@ ggplot(europe_onlyarmedforcesrate[(europe_onlyarmedforcesrate['polityscore'] >= 
 
 
 
-import statsmodels.api
+
 import statsmodels.formula.api as smf
+import statsmodels.api as sm
 import seaborn
 
 import sklearn
@@ -949,7 +950,7 @@ datav1['polityscore'][(datav1['country'] == 'United Kingdom')]
 data2=datav1[['polityscore']]
 ##
 ## centre the polity score
-x_centered = preprocessing.scale(data2[['polityscore']], with_mean='True', with_std='False')
+x_centered = preprocessing.scale(data2[['polityscore']], with_mean=True, with_std=False) ##corrected this had wrong version of code had True and False in qoutes now its in correct format
 ##cast it as a dataframe
 x_centered_df = pd.DataFrame(x_centered, columns=data2.columns)
 ## check the count
@@ -981,3 +982,41 @@ plt.xlabel('polityscore_cntred')
 plt.ylabel('incomeperperson')
 plt.title ('Scatterplot for the Association Between Income per person and the centred Polity score')
 print(scat1)
+
+
+###############
+###Week 3
+###########
+
+
+#Q-Q plot for normality
+
+
+fig4=sm.qqplot(reg1b.resid, line='r')
+
+print(fig4)
+
+# simple plot of residuals
+stdres=pandas.DataFrame(reg1b.resid_pearson)
+plt.plot(stdres, 'o', ls='None')
+l = plt.axhline(y=0, color='r')
+plt.ylabel('Standardized Residual')
+plt.xlabel('Observation Number')
+plt.title()
+
+
+# additional regression diagnostic plots
+import matplotlib.pyplot as pltt
+pd.set_option('display.mpl_style', 'default')
+fig2 = pltt.figure()
+fig2 = sm.graphics.plot_regress_exog(reg1b,  "polityscore_cntred", fig=fig2)
+
+
+# leverage plot
+fig3=sm.graphics.influence_plot(reg1b, size=8)
+print(fig3)
+
+##change a column to index
+##you can see the countries casuig rpoblems
+
+
