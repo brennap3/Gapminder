@@ -989,34 +989,97 @@ print(scat1)
 ###########
 
 
+
+data.columns.values
+##only select not null values of polity  score
+datamv1=data[pandas.notnull(data['polityscore'])&pandas.notnull(data['femaleemployrate'])&pandas.notnull(data['armedforcesrate'])&pandas.notnull(data['internetuserate'])].copy(deep=True)
+#carry out a check for the United Kingdom
+datamv1['polityscore'][(datav1['country'] == 'United Kingdom')]
+##all looks ok
+##now subset the datta selecting only polityscore and country
+datam2=datamv1[['polityscore','femaleemployrate','armedforcesrate','internetuserate']]
+##
+## centre the polity score
+mx_centered = preprocessing.scale(datam2[['polityscore','femaleemployrate','armedforcesrate','internetuserate']], with_mean=True, with_std=False) ##corrected this had wrong version of code had True and False in qoutes now its in correct format
+##cast it as a dataframe
+mx_centered_df = pd.DataFrame(mx_centered, columns=datam2.columns)
+## check the count
+mx_centered_df.count()
+##all look sfine
+##data
+##data 3 is our second subset we will use to do some analysis
+## it consists of ocuntry income per person and polity score
+datam3=datamv1[['country','incomeperperson','polityscore','femaleemployrate','armedforcesrate','internetuserate']]
+##reset the index's
+datam3=datam3.reset_index()
+del datam3['index']
+##
+#data3['polityscore'].describe()
+##concatanate once the indexs are reset
+datamv4 = pd.concat([datam3, mx_centered_df], axis=1)
+datamv4.columns.values
+'country', 'incomeperperson', 'polityscore', 'femaleemployrate',
+       'armedforcesrate', 'internetuserate', 'polityscore',
+       'femaleemployrate', 'armedforcesrate', 'internetuserate'
+
+##reset the column anmes to 
+datamv4.columns=['country','incomeperperson','polityscore','femaleemployrate','armedforcesrate','internetuserate','polityscore_cntred','femaleemployrate_cntred','armedforcesrate_cntred','internetuserate_cntred']
+print(datamv4)
+##
+##now reset the country column as an index
+datamv4reidx=datamv4.set_index('country')
+datamv4reidx.columns.values
+##build rergession model using the centred 
+## build the multi value regession model
+mreg1b = smf.ols('incomeperperson ~ polityscore_cntred+femaleemployrate_cntred+armedforcesrate_cntred+internetuserate_cntred', data=datamv4).fit()
+print (mreg1b.summary())
+
+
+
+
 #Q-Q plot for normality
 
 
-fig4=sm.qqplot(reg1b.resid, line='r')
-
-print(fig4)
+fig4=sm.qqplot(mreg1b.resid, line='r')
 
 # simple plot of residuals
-stdres=pandas.DataFrame(reg1b.resid_pearson)
+stdres=pandas.DataFrame(mreg1b.resid_pearson)
 plt.plot(stdres, 'o', ls='None')
 l = plt.axhline(y=0, color='r')
 plt.ylabel('Standardized Residual')
 plt.xlabel('Observation Number')
-plt.title()
+plt.title('Standardized Residual Plot')
 
 
 # additional regression diagnostic plots
 import matplotlib.pyplot as pltt
 pd.set_option('display.mpl_style', 'default')
 fig2 = pltt.figure()
-fig2 = sm.graphics.plot_regress_exog(reg1b,  "polityscore_cntred", fig=fig2)
+fig2 = sm.graphics.plot_regress_exog(mreg1b,  "polityscore_cntred",fig=fig2)
+print(fig2)
 
+
+##
+pd.set_option('display.mpl_style', 'default')
+fig = pltt.figure()
+fig = sm.graphics.plot_regress_exog(mreg1b,  "internetuserate_cntred",fig=fig)
+print(fig)
+
+internetuserate_cntred 
 
 # leverage plot
-fig3=sm.graphics.influence_plot(reg1b, size=8)
+fig3=sm.graphics.influence_plot(mreg1b, size=8)
 print(fig3)
 
 ##change a column to index
 ##you can see the countries casuig rpoblems
+
+
+
+
+
+
+
+
 
 
