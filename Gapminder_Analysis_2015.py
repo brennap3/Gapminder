@@ -988,6 +988,7 @@ print(scat1)
 ###Week 3
 ###########
 
+https://github.com/brennap3/Gapminder/blob/master/Gapminder_Analysis_2015.py
 
 
 data.columns.values
@@ -1073,6 +1074,27 @@ print(fig3)
 
 ##change a column to index
 ##you can see the countries casuig rpoblems
+
+from scipy.stats import pearsonr
+
+##remove null values for income per person
+##The Pearson correlation coefficient measures the linear relationship between two datasets
+datamv4=datamv4[pandas.notnull(datamv4['incomeperperson'])]
+pearsonr(datamv4['incomeperperson'],datamv4['polityscore_cntred'])
+##first is correlation values second is p-values
+##(0.29139022636132927, 0.00035920252882541128)
+##
+pearsonr(datamv4['incomeperperson'],datamv4['internetuserate_cntred'])
+##first is correlation values second is p-values
+##(0.81295777380893397, 1.241632044123696e-35)
+pearsonr(datamv4['polityscore_cntred'],datamv4['internetuserate_cntred'])
+##first is correlation values second is p-values
+##(0.37195620811965407, 3.7878456020796647e-06)
+
+In statistics, a confounding variable (also confounding factor, a confound, or confounder) 
+is an extraneous variable in a statistical model that correlates (directly or inversely) with both the dependent variable and the independent variable.
+
+
 
 
 
