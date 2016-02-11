@@ -988,7 +988,7 @@ print(scat1)
 ###Week 3
 ###########
 
-https://github.com/brennap3/Gapminder/blob/master/Gapminder_Analysis_2015.py
+##https://github.com/brennap3/Gapminder/blob/master/Gapminder_Analysis_2015.py
 
 
 data.columns.values
@@ -1091,17 +1091,111 @@ pearsonr(datamv4['polityscore_cntred'],datamv4['internetuserate_cntred'])
 ##first is correlation values second is p-values
 ##(0.37195620811965407, 3.7878456020796647e-06)
 
-In statistics, a confounding variable (also confounding factor, a confound, or confounder) 
-is an extraneous variable in a statistical model that correlates (directly or inversely) with both the dependent variable and the independent variable.
+##In statistics, a confounding variable (also confounding factor, a confound, or confounder) 
+##is an extraneous variable in a statistical model that correlates (directly or inversely) with both the dependent variable and the independent variable.
 
 
+##week 1 
+##filter european countries
+##filter out NA's
+##select columns
+##run ANOVA
+##
+
+##checking coloumns
+##data.columns.values
+##checking values
+##data['European']
 
 
+dataanovatestdf=data[['country','incomeperperson','NATO_EU_MEMBERSHIP']][data.European=='Europe']
+
+##dataanovatestdf
+
+model1 = smf.ols(formula='incomeperperson ~ C(NATO_EU_MEMBERSHIP)', data=data)
+results1 = model1.fit()
+print(results1.summary())
+
+##F-statistic:                     8.026
+##Prob (F-statistic):           4.66e-05
+
+## p value less than 0.05 a difference in variance in different groups
+
+print ('means for incomme per person for different groups')
+meansincomeperpersn= dataanovatestdf.groupby('NATO_EU_MEMBERSHIP').mean()
+print (meansincomeperpersn)
+
+##lets display it using boxplots
+
+##boxplot 
+
+ggplot(dataanovatestdf, aes(x='incomeperperson', y='NATO_EU_MEMBERSHIP')) + geom_boxplot() +\
+    xlab("incomeperperson") + ylab(" Nato EU membership status") + ggtitle("Boxplot for income per person for gapminder data for European countries using categorical variable based on Nato Eu membership")
+
+##
+##run your post hoc tests
+
+import statsmodels.stats.multicomp as multi 
+
+mc1 = multi.MultiComparison(dataanovatestdf['incomeperperson'], dataanovatestdf['NATO_EU_MEMBERSHIP'])
+res1 = mc1.tukeyhsd() ##tkeys honestly different test
+print(res1.summary())
+
+##must be performed after
+##cant run pairwise 
 
 
+##lets repeat the procedure for polityscore categories in europe
 
 
+##here we fail to reject the null hypothesis that there is a difference between any of the two groups
+##data.columns.values
+##The multiple comparison of means for any of the comparisons fails to reject the null hypothesis that there is no difference between the different groups.
+##when doing a pairwise comparison.
 
 
+datpolaanovatestdf=data[['country','incomeperperson','polityscore_cat']][(data.European=='Europe') & (data.polityscore_cat!='NA') ]
 
+##
+
+datpolaanovatestdf=datpolaanovatestdf.dropna()
+
+##dataanovatestdf
+
+model1polityscore_cat = smf.ols(formula='incomeperperson ~ C(polityscore_cat)', data=datpolaanovatestdf)
+results1 = model1.fit()
+print(results1.summary())
+
+##
+##F-statistic:                     8.026
+##Date:                Wed, 10 Feb 2016   Prob (F-statistic):           4.66e-05
+## p value less than 0.05 a difference in variance in different groups
+
+print ('means for incomme per person for different poity categories')
+meansincomeperpersnpolitycat= datpolaanovatestdf.groupby('polityscore_cat').mean()
+print (meansincomeperpersnpolitycat)
+
+##lets display it using boxplots
+
+##boxplot 
+
+ggplot(datpolaanovatestdf, aes(x='incomeperperson', y='polityscore_cat')) + geom_boxplot() +\
+    xlab("incomeperperson") + ylab("polityscore_cat") + ggtitle("Boxplot for income per person for gapminder data for European countries using categorical variable based on polity score category")
+
+##
+##run your post hoc tests
+
+import statsmodels.stats.multicomp as multi 
+
+mc1 = multi.MultiComparison(datpolaanovatestdf['incomeperperson'], datpolaanovatestdf['polityscore_cat'])
+res1 = mc1.tukeyhsd() ##tkeys honestly different test
+print(res1.summary())
+
+##
+
+## need to test for these
+
+## The observations being tested are independent within and among the groups.
+## The groups associated with each mean in the test are normally distributed.
+## There is equal within-group variance across the groups associated with each mean in the test (homogeneity of variance).
 
