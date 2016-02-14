@@ -1229,6 +1229,17 @@ print (meansincomeperpersn)
 
 ##lets display it using boxplots
 
+print ('variances for incomme per person for different groups')
+varianceincomeperpersn= dataanovatestdf.groupby('NATO_EU_MEMBERSHIP').var()
+print (varianceincomeperpersn)
+
+##
+
+print ('standard deviations for incomme per person for different groups')
+standarddeviationincomeperpersn= dataanovatestdf.groupby('NATO_EU_MEMBERSHIP').std()
+print (standarddeviationincomeperpersn)
+
+
 ##boxplot 
 
 ggplot(dataanovatestdf, aes(x='incomeperperson', y='NATO_EU_MEMBERSHIP')) + geom_boxplot() +\
