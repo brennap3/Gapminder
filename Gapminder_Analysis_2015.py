@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+## -*- coding: utf-8 -*-
 """
 Spyder Editor
 
@@ -1095,12 +1095,114 @@ pearsonr(datamv4['polityscore_cntred'],datamv4['internetuserate_cntred'])
 ##is an extraneous variable in a statistical model that correlates (directly or inversely) with both the dependent variable and the independent variable.
 
 
+####week 4 logistic rergression
+##select the values of interest
+##'polityscore_cat'
+##'incomeperperson'
+##'urbanrate'
+##'internetuserate'
+##'armedforcesrate'
+
+datalogmodeltdf=data[['polityscore_cat','incomeperperson'
+                        ,'urbanrate'
+                        ,'internetuserate','femaleemployrate'
+                        ,'armedforcesrate']].dropna()
+
+datalogmodeltdfnona=datalogmodeltdf[(data.polityscore_cat!='NA')]
+datalogmodeltdf.dtypes
+
+##build logistic model
+
+datalogmodeltdfnona['polityscore_cat']=datalogmodeltdfnona['polityscore_cat'].astype(str)
+datalogmodeltdfnona.dtypes
+datalogmodeltdfnona=datalogmodeltdfnona.reset_index()
+del datalogmodeltdfnona['index']
+datalogmodeltdfnona
+datalogmodeltdfnonav1=datalogmodeltdfnona[['polityscore_cat','incomeperperson','urbanrate'
+                        ,'internetuserate','femaleemployrate'
+                        ,'armedforcesrate'
+                        ]].dropna()
+
+
+##recode variables
+
+
+def polityscore_cat_int (row):
+   if (row['polityscore_cat']=='Democracy') :
+      return 1
+   else :
+      return 0
+
+##recode if democracy 1 else (it its anocracy or autocracy)
+##calculate the age of NATO countries
+##data['Years_In_Nato'] = data.apply (lambda row: AGE_YEARS (row),axis=1)
+datalogmodeltdfnonav1['polityscore_cat_int'] = datalogmodeltdfnonav1.apply (lambda row: polityscore_cat_int (row),axis=1)
+
+#####Pre-processing  data
+datalogmodeltdfnonav1_centered = preprocessing.scale(datalogmodeltdfnonav1[['incomeperperson','urbanrate','internetuserate','femaleemployrate','armedforcesrate']], with_mean=True, with_std=False) ##corrected this had wrong version of code had True and False in qoutes now its in correct format
+##cast it as a dataframe
+datalogmodeltdfnonav1_centered_df = pd.DataFrame(datalogmodeltdfnonav1_centered)
+## set the columns
+datalogmodeltdfnonav1_centered_df.columns=['incomeperperson_centred','urbanrate_centred','internetuserate_centred','femaleemployrate_centred','armedforcesrate_centred']
+## check the count
+datalogmodeltdfnonav1_centered_df.count()
+##all look sfine
+##data
+##data 3 is our second subset we will use to do some analysis
+##concatanate once the indexs are reset
+datalogmodeltdfnonav1_centered_df_cntred = pd.concat([datalogmodeltdfnonav1['polityscore_cat_int'], datalogmodeltdfnonav1_centered_df], axis=1)
+datalogmodeltdfnonav1_centered_df_cntred.columns.values
+##
+## preprocessing ended
+
+
+lreg1 = smf.logit(formula='polityscore_cat_int ~ armedforcesrate_centred',data = datalogmodeltdfnonav1_centered_df_cntred).fit()
+print (lreg1.summary())
+
+
+##odds ratio
+print np.exp(lreg1.params)
+##little or no effect
+params = lreg1.params
+conf = lreg1.conf_int()
+conf['OR'] = params
+conf.columns = ['2.5%', '97.5%', 'OR']
+print np.exp(conf)
+
+
+
+lreg3 = smf.logit(formula='polityscore_cat_int ~ incomeperperson_centred+urbanrate_centred+internetuserate_centred+armedforcesrate_centred+femaleemployrate_centred',data = datalogmodeltdfnonav1_centered_df_cntred).fit()
+print (lreg3.summary())
+##odds ratio
+params = lreg3.params
+conf = lreg3.conf_int()
+conf['OR'] = params
+conf.columns = ['2.5%', '97.5%', 'OR']
+print np.exp(conf)
+
+
+
+#
+
+#An odds ratio (OR) is a measure of association between an exposure and an outcome. 
+#The OR represents the odds that an outcome will occur given a particular exposure,
+#compared to the odds of the outcome occurring in the absence of that exposure.
+
+
+##odds ratio 1 equal prob with and without increase or decrease in  model model not statistically significant
+##  OR greater 1 prob of being dmocrocy increases when response varaible increases
+##  OR less than 1 prob of being dmocrocy decreases when response varaible increases
+
+
+
+
 ##week 1 
 ##filter european countries
 ##filter out NA's
 ##select columns
 ##run ANOVA
 ##
+
 
 ##checking coloumns
 ##data.columns.values

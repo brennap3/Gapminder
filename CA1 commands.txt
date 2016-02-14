@@ -1,0 +1,177 @@
+CA 1 commands
+## device	Interface	IP address	Subnet Mask 	Default gateway	Notes
+## Groundfloor Sandyford Switch	VLAN 99 802.1q trunks	192.168.11.106	255.255.255.248	192.168.11.105	Trunk
+## floor 1 Sandyford Switch	VLAN 99 802.1q trunks	192.168.11.107	255.255.255.248	192.168.11.105	Trunk
+## floor 2 Sandyford Switch	VLAN 99 802.1q trunks	192.168.11.108	255.255.255.248	192.168.11.105	Trunk
+## Sandyford Router	Se2/0				
+## Sandyford Router	Fa0/0	interface config Sandyford			
+	
+	
+## fa0/1-fa0/6	802.1q trunks vlan (vlan 99)	192.168.11.104	/29
+## fa0/7-fa0/19	sandyford Accounting vlan	192.168.10.0	/26
+## fa0/19-fa0/24	sandyford Sales vlan	192.168.10.160	/27
+
+
+##sandyford groundfloor switch 1
+
+config term
+interface range fa0/1-24
+shutdown
+
+##sandyford first floor switch 
+
+config term
+interface range fa0/1-24
+shutdown
+
+##sandyford second floor switch 
+
+config term
+interface range fa0/1-24
+shutdown
+
+##sandyford third floor switch 
+
+config term
+interface range fa0/1-24
+shutdown
+
+##Step 2: Re-enable the user ports on first, second and third floor
+
+##sandyford first floor switch
+
+interface range fa0/6, fa0/19
+switchport mode access 
+no shutdown
+
+##sandyford second floor switch
+
+interface range fa0/6, fa0/19
+switchport mode access 
+no shutdown
+
+##sandyford third floor switch
+
+interface range fa0/6, fa0/19
+switchport mode access 
+no shutdown
+
+##sandyford third floor switch
+
+interface range fa0/6, fa0/19
+switchport mode access 
+no shutdown
+
+## Create the VLANs on Switch on Switch Sandyford Groundfloor
+
+vlan 10
+name Sales_Sandyford
+vlan 20
+name Accounting_Sandyford
+vlan 99
+name management
+end
+
+## Check that the Vland 
+
+show vlan brief 
+
+##check that they are up
+
+##Assign switch ports to VLANs on first, second and third floor
+
+##first floor sandyford switch
+
+interface range fa0/6-18
+switchport access vlan 20
+interface range fa0/19-24
+switchport access vlan 10
+end
+
+copy running-config startup-config 
+
+
+##second floor sandyford switch
+
+interface range fa0/6-18
+switchport access vlan 20
+interface range fa0/19-24
+switchport access vlan 10
+end
+
+copy running-config startup-config 
+
+##third floor sandyford switch
+
+interface range fa0/6-18
+switchport access vlan 20
+interface range fa0/19-24
+switchport access vlan 10
+end
+
+copy running-config startup-config 
+
+##Check the vlans config
+
+show vlan name
+
+##groundfloor sandyford
+interface vlan 99
+ip address 192.168.11.106	255.255.255.248
+no shutdown
+
+##first floor sandyford
+interface vlan 99
+ip address 192.168.11.107	255.255.255.248
+no shutdown
+
+##second floor
+interface vlan 99
+ip address 192.168.11.108	255.255.255.248
+no shutdown
+
+##third floor
+interface vlan 99
+ip address 192.168.11.109	255.255.255.248
+no shutdown
+
+##Step 7: Configure trunking and the native VLAN for the trunking ports on all switches. 
+
+#ground floor 
+interface range fa0/1-6
+switchport mode trunk
+switchport trunk native vlan 99
+no shutdown
+end
+
+#first floor 
+interface range fa0/1-6
+switchport mode trunk
+switchport trunk native vlan 99
+no shutdown
+end
+
+#second floor
+interface range fa0/1-6
+switchport mode trunk
+switchport trunk native vlan 99
+no shutdown
+end
+
+#third floor
+interface range fa0/1-6
+switchport mode trunk
+switchport trunk native vlan 99
+no shutdown
+end
+
+##on all switches, check the trunk interfaces
+
+##ping the servers
+
+ping 192.168.11.106
+ping 192.168.11.107
+ping 192.168.11.108
+ping 192.168.11.109
+
+
