@@ -18,6 +18,8 @@ import sys; print(sys.path)
 from seaborn import *
 import seaborn as sns
 from ggplot import *
+import scipy
+##import scipy.stats
 
 
 ##give the path of our folder
@@ -1311,4 +1313,59 @@ print(res1.summary())
 ## The observations being tested are independent within and among the groups.
 ## The groups associated with each mean in the test are normally distributed.
 ## There is equal within-group variance across the groups associated with each mean in the test (homogeneity of variance).
+
+##
+
+##chiq test week
+##here we want to test that if for NATO members or EU (explanatory)
+## has on being a deomocracy or not
+
+# contingency table of observed counts
+
+##pre-process data
+
+##recode variables
+
+data.columns.values
+
+
+def polityscore_cat_int (row):
+   if (row['polityscore_cat']=='Democracy') :
+      return 'Democracy'
+   else :
+      return 'Not Democracy'
+
+##recode if democracy 1 else (it its anocracy or autocracy)
+##calculate the age of NATO countries
+##data['Years_In_Nato'] = data.apply (lambda row: AGE_YEARS (row),axis=1)
+data['polityscore_cat_democracy'] = data.apply (lambda row: polityscore_cat_int (row),axis=1)
+
+##data.columns.values
+##added
+
+datasub2=data[data.European=='Europe']
+
+##datasub2=datasub2.dropna()
+
+
+##datasub2.columns.values
+##runc check
+##
+
+ct1=pandas.crosstab(datasub2['polityscore_cat_democracy'], datasub2['NATO_EU_MEMBERSHIP'])
+print (ct1)
+
+# column percentages
+colsum=ct1.sum(axis=0)
+colpct=ct1/colsum
+print(colpct)
+
+# chi-square
+
+import scipy.stats
+
+print ('chi-square value, p value, expected counts')
+cs1= scipy.stats.chi2_contingency(ct1)
+print(cs1)
+
 
