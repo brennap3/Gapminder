@@ -1356,9 +1356,9 @@ ct1=pandas.crosstab(datasub2['polityscore_cat_democracy'], datasub2['NATO_EU_MEM
 print (ct1)
 
 # column percentages
-colsum=ct1.sum(axis=0)
-colpct=ct1/colsum
-print(colpct)
+colsum1=ct1.sum(axis=0)
+colpct1=ct1/colsum
+print(colpct1)
 
 # chi-square
 
@@ -1369,3 +1369,90 @@ cs1= scipy.stats.chi2_contingency(ct1)
 print(cs1)
 
 
+## Returns:	
+## chi2 : float
+## The test statistic.
+## p : float
+## The p-value of the test
+## dof : int
+## Degrees of freedom
+## expected : ndarray, same shape as observed
+## The expected frequencies, based on the marginal sums of the table.
+
+##Nato_And_EU Nato_Not_In_EU
+
+recode2 = {'Nato_And_EU':'Nato_And_EU', 'Nato_Not_In_EU': 'Nato_Not_In_EU'}
+datasub2['COMP1v2']= datasub2['NATO_EU_MEMBERSHIP'].map(recode2)
+
+# contingency table of observed counts
+ct2=pandas.crosstab(datasub2['polityscore_cat_democracy'], datasub2['COMP1v2'])
+print (ct2)
+
+# column percentages
+colsum2=ct2.sum(axis=0)
+colpct2=ct2/colsum
+print(colpct2)
+
+
+##Nato_And_EU Not_In_Nato_In_EU
+
+recode3 = {'Nato_And_EU':'Nato_And_EU', 'Not_In_Nato_In_EU': 'Not_In_Nato_In_EU'}
+datasub2['COMP1v3']= datasub2['NATO_EU_MEMBERSHIP'].map(recode3)
+
+ct3=pandas.crosstab(datasub2['polityscore_cat_democracy'], datasub2['COMP1v3'])
+print (ct3)
+
+# column percentages
+colsum=ct3.sum(axis=0)
+colpct=ct3/colsum
+print(colpct)
+##
+print ('chi-square value, p value, expected counts')
+cs3= scipy.stats.chi2_contingency(ct3)
+print (cs3)
+
+##0.10909090909090913 0.74118150587360399
+
+
+##Nato_And_EU Not_In_Nato_Not_In_EU
+
+recode4 = {'Nato_And_EU':'Nato_And_EU', 'Not_In_Nato_Not_In_EU': 'Not_In_Nato_Not_In_EU'}
+datasub2['COMP1v4']= datasub2['NATO_EU_MEMBERSHIP'].map(recode4)
+
+ct4=pandas.crosstab(datasub2['polityscore_cat_democracy'], datasub2['COMP1v4'])
+print (ct4)
+
+# column percentages
+colsum=ct4.sum(axis=0)
+colpct=ct4/colsum
+print(colpct)
+##
+print ('chi-square value, p value, expected counts')
+cs4= scipy.stats.chi2_contingency(ct4)
+print (cs4)
+print (cs4)
+## (10.152916666666666, 0.0014407311825336937, 1L, array([[ 14.28571429,  10.71428571],
+##       [  5.71428571,   4.28571429]]))
+##
+
+
+##Not_In_Nato_In_EU Not_In_Nato_Not_In_EU
+
+recode5 = {'Not_In_Nato_In_EU': 'Not_In_Nato_In_EU', 'Not_In_Nato_Not_In_EU': 'Not_In_Nato_Not_In_EU'}
+datasub2['COMP2v3']= datasub2['NATO_EU_MEMBERSHIP'].map(recode5)
+
+ct5=pandas.crosstab(datasub2['polityscore_cat_democracy'], datasub2['COMP2v3'])
+print (ct5)
+
+# column percentages
+colsum=ct5.sum(axis=0)
+colpct=ct5/colsum
+print(colpct)
+##
+print ('chi-square value, p value, expected counts')
+cs5= scipy.stats.chi2_contingency(ct5)
+print (cs5)
+
+##their are 4 tests so our altered alpha
+##is equal to 0.05/3
+ ##0.01666
