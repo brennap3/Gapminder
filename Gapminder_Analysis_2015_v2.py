@@ -1464,6 +1464,7 @@ print (cs5)
 
 import scipy
 import seaborn
+import seaborn.linearmodels
 import matplotlib.pyplot as plt
 
 data.columns.values
@@ -1523,6 +1524,7 @@ print (scipy.stats.pearsonr(Not_In_Nato_In_EU['incomeperperson'], Not_In_Nato_In
 print ('association between income per person and polityscore for Nato_And_EU countries')
 print (scipy.stats.pearsonr(Nato_And_EU['incomeperperson'], Nato_And_EU['polityscore']))
 
+
 scat1 = seaborn.regplot(x="polityscore", y="incomeperperson", fit_reg=True, data=Not_In_Nato_Not_In_EU)
 plt.xlabel('polityscore')
 plt.ylabel('incomeperperson')
@@ -1540,12 +1542,23 @@ plt.ylabel('incomeperperson')
 plt.title('Scatterplot for the Association Between Income per person and Polityscore for countries Not_In_Nato_In_EU')
 
 
-scat4 = seaborn.regplot(x="polityscore", y="incomeperperson", fit_reg=True, data=Nato_And_EU)
+scat4 = seaborn.regplot(x="polityscore", y="incomeperperson", fit_reg=False, data=Nato_And_EU)
 plt.xlabel('polityscore')
 plt.ylabel('incomeperperson')
 plt.title('Scatterplot for the Association Between Income per person and Polityscore for countries Nato_And_EU')
 
+
+matplotlib.pyplot.scatter(Nato_And_EU['polityscore'],Nato_And_EU['incomeperperson'])
+## Chart title
+matplotlib.pyplot.title('Scatterplot for the Association Between Income per person and Polityscore for countries Nato_And_EU')
+# y label
+matplotlib.pyplot.ylabel('Income Peter Person')
+# x label
+matplotlib.pyplot.xlabel('Polity score')
+matplotlib.pyplot.show()
+
+
 ##try a facet plot
-g = seaborn.FacetGrid(subset_data_europe, col="NATO_EU_MEMBERSHIP")
-g.map(plt.scatter, "polityscore", "incomeperperson", alpha=.7)
-g.add_legend();
+##g = seaborn.FacetGrid(subset_data_europe, col="NATO_EU_MEMBERSHIP")
+##g.map(plt.scatter, "polityscore", "incomeperperson", alpha=.7)
+##g.add_legend();
