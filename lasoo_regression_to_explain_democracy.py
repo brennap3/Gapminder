@@ -1041,90 +1041,22 @@ data['polityscore_cat'].replace("Democracy",1,inplace=True)
 data['polityscore_cat'].value_counts(sort=False, dropna=False)
 
 
-##
-
-data1=data[['incomeperperson','armedforcesrate','femaleemployrate',
-            'internetuserate',
-            'European', 'African','Asian', 'Mid_East',
-            'North_American', 'Carribean_Central_America',
-            'OPEC', 'Arab_League', 'ASEAN_ARF', 'South_American',
-            'Is_Nato_Country','Eu_Member','polityscore_cat']]
-
-
-  
-data_clean1 = data1.dropna() ## drop all na values cant handle nulls
-
-data_clean1.dtypes
-
-data_clean1.columns.values
-
-data_clean1.describe
-
-##'European', 'African','Asian', 'Mid_East', 'North_American', 'Carribean_Central_America','OPEC', 'Arab_League', 'ASEAN_ARF', 'South_American','Is_Nato_Country'
-
-predictors = data_clean1[['incomeperperson','armedforcesrate','femaleemployrate','internetuserate','European', 'African','Asian', 'Mid_East', 'North_American', 'Carribean_Central_America','OPEC', 'Arab_League', 'ASEAN_ARF', 'South_American','Is_Nato_Country','Eu_Member']]
-
-targets = data_clean1.polityscore_cat
-
-pred_train, pred_test, tar_train, tar_test  =   train_test_split(predictors, targets, test_size=.4)
-
-pred_train.shape
-pred_test.shape
-tar_train.shape
-tar_test.shape
 
 #Build model on training data
-classifier=DecisionTreeClassifier()
-classifier=classifier.fit(pred_train,tar_train)
-##
-
-
-
-predictions=classifier.predict(pred_test)
-
-sklearn.metrics.confusion_matrix(tar_test,predictions)
-sklearn.metrics.accuracy_score(tar_test, predictions)
-
-## array([[21, 11],
-##       [17, 14]])
-
-##sklearn.metrics.accuracy_score(tar_test, predictions)
-##Out[386]: 0.55555555555555558
 from sklearn import tree
 #from StringIO import StringIO
 from io import StringIO
 #from StringIO import StringIO 
 from IPython.display import Image
-import pydotplus ##maygey an error here
+import pydot ##maygey an error here
 
 from sklearn.externals.six import StringIO  
 import pydot
 
 
-from sklearn.externals.six import StringIO
-with open("gapminder3.dot", 'w') as f:
-     f = tree.export_graphviz(classifier, out_file=f)
 
-os.unlink('gapminder3.dot')
 
-dot_data = StringIO() 
 
-tree.export_graphviz(classifier, out_file=dot_data) 
-graph = pydotplus.graph_from_dot_data(dot_data.getvalue()) 
-graph.write_pdf("gapminderx2.pdf")
-predictors.columns.values.tolist()
-
-np.unique(targets)
-
-print sklearn.__version__
-
-from IPython.display import Image  
-dot_data = StringIO()  
-tree.export_graphviz(classifier, out_file=dot_data,
-                     feature_names=predictors.columns.values.tolist())
-graph = pydot.graph_from_dot_data(dot_data.getvalue())
-graph.write_pdf("gapminder4x1212.pdf")   
-Image(graph.create_png())
   
 ##
   ###
@@ -1132,214 +1064,304 @@ Image(graph.create_png())
 ##
 ##lets try   
 
-#Build model on training data
-classifier2=DecisionTreeClassifier(max_depth=3)
-classifier2=classifier.fit(pred_train,tar_train)
-##
-dot_data2 = StringIO()  
-tree.export_graphviz(classifier2, out_file=dot_data2,
-                     feature_names=predictors.columns.values.tolist())
-graph2 = pydot.graph_from_dot_data(dot_data2.getvalue())
-graph2.write_pdf("gapminder4x1212xdxxxx.pdf")   
-Image(graph.create_png())
 
-
-predictions2=classifier2.predict(pred_test)
-
-sklearn.metrics.confusion_matrix(tar_test,predictions2)
-sklearn.metrics.accuracy_score(tar_test, predictions2)
-  
- ###
- ######
- ######
- ##
-
-from sklearn.cross_validation import cross_val_score
-from sklearn.datasets import make_blobs
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.tree import DecisionTreeClassifier
-
-
-rndforclassifier=RandomForestClassifier(n_estimators=50)
-rndforclassifier=rndforclassifier.fit(pred_train,tar_train)
-
-predictionsrndfor=rndforclassifier.predict(pred_test)
-
-sklearn.metrics.confusion_matrix(tar_test,predictionsrndfor)
-sklearn.metrics.accuracy_score(tar_test,predictionsrndfor)
-
-##Out[82]: 0.74603174603174605
-##array([[21,  7],
-##       [12, 23]])
-
-
-# fit an Extra Trees model to the data
-
-print(rndforclassifier.feature_importances_)
-
-##Peter put this into a function
-df_feature_importance = pd.concat([pd.DataFrame(rndforclassifier.feature_importances_), pd.DataFrame(predictors.columns.values)], axis=1)
-df_feature_importance.columns = ['Feature_Importance','Feature']
-
-##order by feature imporatnce
-df_feature_importance=df_feature_importance.sort_index(by=['Feature_Importance'], ascending=[True])
-
-ggplot(df_feature_importance, aes(x='Feature', y='Feature_Importance')) + geom_bar(stat='identity') + theme(axis_text_x  = element_text(angle = 90, hjust = 1))
-
-##
-####
-####
-##
-
-
-data.columns.values
-
-data2=data[['incomeperperson', 'alcconsumption', 'armedforcesrate',
-         'femaleemployrate',
-       'internetuserate', 'lifeexpectancy', 
-       'employrate',  'European', 'African',
-       'Asian', 'Mid_East', 'North_American', 'Carribean_Central_America',
-       'OPEC', 'Arab_League', 'ASEAN_ARF', 'South_American', 'Eu_Member', 
-        'polityscore_cat']]
-
-
-data_clean2 = data2.dropna() ## drop all na values cant handle nulls
-
-
-
-data_clean2.columns.values
-
-data_clean2.count
-
-##'European', 'African','Asian', 'Mid_East', 'North_American', 'Carribean_Central_America','OPEC', 'Arab_League', 'ASEAN_ARF', 'South_American','Is_Nato_Country'
-
-predictors = data_clean2[[ 'incomeperperson', 'alcconsumption', 'armedforcesrate',
-         'femaleemployrate',
-       'internetuserate', 'lifeexpectancy', 
-       'employrate',  'European', 'African',
-       'Asian', 'Mid_East', 'North_American', 'Carribean_Central_America',
-       'OPEC', 'Arab_League', 'ASEAN_ARF', 'South_American', 'Eu_Member']]
-
-targets = data_clean2.polityscore_cat
-
-pred_train, pred_test, tar_train, tar_test  =   train_test_split(predictors, targets, test_size=.3)
-
-
-rndforclassifier2=RandomForestClassifier(n_estimators=50)
-rndforclassifier2=rndforclassifier2.fit(pred_train,tar_train)
-
-predictionsrndfor2=rndforclassifier2.predict(pred_test)
-
-sklearn.metrics.confusion_matrix(tar_test,predictionsrndfor2)
-sklearn.metrics.accuracy_score(tar_test,predictionsrndfor2)
-
-print(rndforclassifier2.feature_importances_)
-
-df_feature_importance = pd.concat([pd.DataFrame(rndforclassifier2.feature_importances_), pd.DataFrame(predictors.columns.values)], axis=1)
-
-df_feature_importance.columns = ['Feature_Importance','Feature']
-
-##order by feature imporatnce
-df_feature_importance2=df_feature_importance.sort_index(by=['Feature_Importance'], ascending=[True])
-
-ggplot(df_feature_importance2, aes(x='Feature', y='Feature_Importance')) + geom_bar(stat='identity') + theme(axis_text_x  = element_text(angle = 90, hjust = 1))
-
-
-
-##
-#####train a model with cross val
-#####
-##
-
-
-from sklearn.cross_validation import *
-
-rndforclassifier3=RandomForestClassifier(n_estimators=50)
-
-rndforclassifier3.fit(pred_train, tar_train)
-
-cv = KFold(pred_train.shape[0], 5, shuffle=True, random_state=33)
-
-scores = cross_val_score(rndforclassifier3,pred_train, tar_train, cv=cv)
-
-pred_train.shape
-pred_test.shape
-tar_train.shape
-tar_test.shape
-  
-np.mean(scores) 
-
-df_feature_importance3 = pd.concat([pd.DataFrame(rndforclassifier3.feature_importances_), pd.DataFrame(predictors.columns.values)], axis=1)
-
-df_feature_importance3.columns = ['Feature_Importance','Feature']
-
-##order by feature imporatnce
-df_feature_importance3=df_feature_importance3.sort_index(by=['Feature_Importance'], ascending=[True])
-
-
-ggplot(df_feature_importance2, aes(x='Feature', y='Feature_Importance')) + geom_bar(stat='identity') + theme(axis_text_x  = element_text(angle = 90, hjust = 1))
 
 ##
 
 ##Ok lets see what the best features are
-
-pred_train.shape
-pred_test.shape
-tar_train.shape
-tar_test.shape
-
-pd.DataFrame(predictors.columns.values)
-
-from sklearn.feature_selection import *
-fs=SelectKBest(score_func=f_regression,k=5)
-X_new=fs.fit_transform(pred_train,tar_train)
-
-print zip(fs.get_support(),predictors.columns.values)
+##note to one self HIV rates missing froma lot of countries
 
 
-fs2=SelectKBest(score_func=f_classif,k=5)
-X_new2=fs2.fit_transform(pred_train,tar_train)
-
-print zip(fs2.get_support(),predictors.columns.values)
-
-##based on our feature selection using 
  
-##f_regression
-##F-value between label/feature for regression tasks. 
- 
- 
-###lets see if works on linux!
- 
- ##http://scikit-learn.org/stable/modules/ensemble.html
- ##this does not appear to work
- 
-import boruta_py
-
-forest = RandomForestClassifier(n_jobs=-1, class_weight='auto')
-
-# define Boruta feature selection method
-feat_selector = boruta_py.BorutaPy(forest, n_estimators='auto', verbose=2)
-
-# find all relevant features
-feat_selector.fit(pred_train, tar_train)
-
-# check selected features
-feat_selector.support_
-
-# check ranking of features
-feat_selector.ranking_
-
-# call transform() on X to filter it down to selected features
-X_filtered = feat_selector.transform(X)
-
 datatransparency = pandas.read_csv('CPI_2015_DATA.csv', low_memory=False)
 
 
 ##w['female'] = w['female'].map({'female': 1, 'male': 0})
 datatransparency.columns.values
+data.columns.values
 
-datatransparency['Country']= datatransparency['Country'].map(
-{'The United States Of America':'United States'
-})
+## Dont use map
+## datatransparency['Country']= datatransparency['Country'].map(
+## {"The United States Of America":"United States",
+##  "C“te dïIvoire":"Cote d'Ivoire",
+##  "Korea (South)":"Korea, Rep.",
+##  "Korea (North)":"Korea, Dem. Rep.",
+##  "Czech Republic":"Czech Rep.",
+##  "Democratic Republic of the Congo":"Congo, Dem. Rep.",
+##  "The FYR of Macedonia": "Macedonia, FYR",
+##  "Hong Kong":"Hong Kong, China"
+## })
  
+
+def country_consistent (row):
+     if row['Country'] == "The United States Of America" :
+      return "United Sates"
+     elif row['Country'] == "C“te dïIvoire" :
+      return "Cote d'Ivoire"   
+     elif row['Country'] == "Korea (South)" :
+      return "Korea, Rep."
+     elif row['Country'] == "Korea (North)" :
+      return "Korea, Dem. Rep." 
+     elif row['Country'] == "Korea (South)" :
+      return "Korea, Rep."
+     elif row['Country'] == "Czech Republic" :
+      return "Czech Rep."
+     elif row['Country'] == "Democratic Republic of the Congo" :
+      return "Congo, Dem. Rep."
+     elif  row['Country'] == "The FYR of Macedonia" :
+      return "Macedonia, FYR"
+     elif  row['Country'] == "Hong Kong" :
+      return "Hong Kong, China"     
+     else :
+      return row['Country']
+
+datatransparency['Country'] = datatransparency.apply (lambda row: country_consistent(row),axis=1)
+
+
+##calculate the age of NATO countries
+##data['Years_In_Nato'] = data.apply (lambda row: AGE_YEARS (row),axis=1)
+##
+
+ ##ok after eyeballing in excel they all look ok
+
+##merge the two datasets
+
+datafullset=data.merge(datatransparency,left_on='country',right_on='Country',how='left')
+ 
+datafullset.columns.values
+
+datafullset.count
+
+
+##        'country', 'incomeperperson', 'alcconsumption', 'armedforcesrate',
+##       'breastcancerper100th', 'co2emissions', 'femaleemployrate',
+##       'hivrate', 'internetuserate', 'lifeexpectancy', 'oilperperson',
+##       'polityscore', 'relectricperperson', 'suicideper100th',
+##       'employrate', 'urbanrate', 'categories', 'European', 'African',
+##       'Asian', 'Mid_East', 'North_American', 'Carribean_Central_America',
+##       'OPEC', 'Arab_League', 'ASEAN_ARF', 'South_American',
+##       'Is_Nato_Country', 'Year_Joined_Nato', 'Eu_Member', 'Years_In_Nato',
+##       'NATO_EU_MEMBERSHIP', 'polityscore_cat', 'Rank', 'CPI2015',
+##       'Country', 'Region', 'wbcode', 'World Bank CPIA',
+##       'World Economic Forum EOS', 'Bertelsmann Foundation TI',
+##       'African Dev Bank', 'IMD World Competitiveness Yearbook',
+##       'Bertelsmann Foundation SGI', 'World Justice Project ROL',
+##       'PRS International Country Risk Guide',
+##       'Economist Intelligence Unit', 'IHS Global Insight',
+##       'PERC Asia Risk Guide', 'Freedom House NIT', 'CPI2015(2)', 'Rank2',
+##       'Number of Sources', 'Std Deviation of Sources', 'Standard Error',
+##       'Minimum', 'Maximum', 'Lower CI', 'Upper CI', 'Country2'
+
+
+data2=datafullset[['incomeperperson', 'alcconsumption', 'armedforcesrate',
+         'femaleemployrate',
+         'internetuserate', 'lifeexpectancy', 
+         'employrate',  'European', 'African',
+         'Asian', 'Mid_East', 'North_American', 'Carribean_Central_America',
+         'OPEC', 'Arab_League', 'ASEAN_ARF', 'South_American', 'Eu_Member','Is_Nato_Country','Years_In_Nato',
+         'CPI2015','World Economic Forum EOS','PRS International Country Risk Guide',
+         'polityscore']]
+
+data2.count
+
+data_clean2 = data2.dropna() ## drop all na values cant handle nulls
+
+data_clean2.count
+
+from sklearn import preprocessing
+
+## standardize the dataset
+
+data_clean2['incomeperperson']=preprocessing.scale(data_clean2['incomeperperson'].astype('float64'))
+data_clean2['alcconsumption']=preprocessing.scale(data_clean2['alcconsumption'].astype('float64'))
+data_clean2['armedforcesrate']=preprocessing.scale(data_clean2['armedforcesrate'].astype('float64'))
+data_clean2['femaleemployrate']=preprocessing.scale(data_clean2['femaleemployrate'].astype('float64'))
+data_clean2['internetuserate']=preprocessing.scale(data_clean2['internetuserate'].astype('float64'))
+data_clean2['lifeexpectancy']=preprocessing.scale(data_clean2['lifeexpectancy'].astype('float64'))
+data_clean2['employrate']=preprocessing.scale(data_clean2['employrate'].astype('float64'))
+data_clean2['European']=preprocessing.scale(data_clean2['European'].astype('float64'))
+data_clean2['African']=preprocessing.scale(data_clean2['African'].astype('float64'))
+data_clean2['Asian']=preprocessing.scale(data_clean2['Asian'].astype('float64'))
+data_clean2['Mid_East']=preprocessing.scale(data_clean2['Mid_East'].astype('float64'))
+data_clean2['North_American']=preprocessing.scale(data_clean2['North_American'].astype('float64'))
+data_clean2['Carribean_Central_America']=preprocessing.scale(data_clean2['Carribean_Central_America'].astype('float64'))
+data_clean2['OPEC']=preprocessing.scale(data_clean2['OPEC'].astype('float64'))
+data_clean2['Arab_League']=preprocessing.scale(data_clean2['Arab_League'].astype('float64'))
+data_clean2['ASEAN_ARF']=preprocessing.scale(data_clean2['ASEAN_ARF'].astype('float64'))
+data_clean2['South_American']=preprocessing.scale(data_clean2['South_American'].astype('float64'))
+data_clean2['Eu_Member']=preprocessing.scale(data_clean2['Eu_Member'].astype('float64'))
+data_clean2['Is_Nato_Country']=preprocessing.scale(data_clean2['Is_Nato_Country'].astype('float64'))
+data_clean2['Years_In_Nato']=preprocessing.scale(data_clean2['Years_In_Nato'].astype('float64'))
+data_clean2['CPI2015']=preprocessing.scale(data_clean2['CPI2015'].astype('float64'))
+data_clean2['World Economic Forum EOS']=preprocessing.scale(data_clean2['World Economic Forum EOS'].astype('float64'))
+data_clean2['PRS International Country Risk Guide']=preprocessing.scale(data_clean2['PRS International Country Risk Guide'].astype('float64'))
+##
+
+###
+###check the standardization worked
+
+target = data_clean2.polityscore
+ 
+# standardize predictors to have mean=0 and sd=1
+predictors=data_clean2[['incomeperperson', 'alcconsumption', 'armedforcesrate',
+         'femaleemployrate',
+         'internetuserate', 'lifeexpectancy', 
+         'employrate',  'European', 'African',
+         'Asian', 'Mid_East', 'North_American', 'Carribean_Central_America',
+         'OPEC', 'Arab_League', 'ASEAN_ARF', 'South_American', 'Eu_Member','Is_Nato_Country','Years_In_Nato',
+         'CPI2015','World Economic Forum EOS','PRS International Country Risk Guide']]
+
+
+###
+###
+
+pred_train, pred_test, tar_train, tar_test = train_test_split(predictors, target, 
+                                                              test_size=.3, random_state=123)
+                                                              
+
+import sklearn.linear_model                                                              
+# specify the lasso regression model
+# change cv to 5
+model=sklearn.linear_model.LassoLarsCV(cv=5, precompute=False).fit(pred_train,tar_train)
+
+# print variable names and regression coefficients
+dict(zip(predictors.columns, model.coef_))
+
+
+## {'ASEAN_ARF': 1.0751280260662057,
+##  'African': -0.80103427955213391,
+##  'Arab_League': -0.75445326325981865,
+##  'Asian': -0.18027408104575077,
+##  'CPI2015': 5.1488730346502063,
+##  'Carribean_Central_America': 1.7511806395204483,
+##  'Eu_Member': 0.3186323959143092,
+##  'European': 0.48294668353681142,
+##  'Is_Nato_Country': 1.1682007573664959,
+##  'Mid_East': -0.39695605502390469,
+##  'North_American': 0.0,
+##  'OPEC': -0.86977861918196875,
+##  'PRS International Country Risk Guide': -1.0914128237785916,
+##  'South_American': 1.5441052599359877,
+##  'World Economic Forum EOS': -1.6287945034420015,
+##  'Years_In_Nato': -0.4787168743731352,
+##  'alcconsumption': 0.61054750969745375,
+##  'armedforcesrate': 0.32722934011118593,
+##  'employrate': -2.4374967009233841,
+##  'femaleemployrate': 1.2879949088390379,
+##  'incomeperperson': 1.9394683296765849,
+##  'internetuserate': -3.2651731839242308,
+##  'lifeexpectancy': -0.40401776086788732}
+
+# plot coefficient progression
+m_log_alphas = -np.log10(model.alphas_)
+ax = plt.gca()
+plt.plot(m_log_alphas, model.coef_path_.T)
+plt.axvline(-np.log10(model.alpha_), linestyle='--', color='k',
+            label='alpha CV')
+plt.ylabel('Regression Coefficients')
+plt.xlabel('-log(alpha)')
+plt.title('Regression Coefficients Progression for Lasso Paths')
+
+
+
+
+# plot mean square error for each fold
+
+m_log_alphascv = -np.log10(model.cv_alphas_)
+plt.figure()
+plt.plot(m_log_alphascv, model.cv_mse_path_, ':')
+plt.plot(m_log_alphascv, model.cv_mse_path_.mean(axis=-1), 'k',
+         label='Average across the folds', linewidth=2)
+plt.axvline(-np.log10(model.alpha_), linestyle='--', color='k',
+            label='alpha CV')
+plt.legend()
+plt.xlabel('-log(alpha)')
+plt.ylabel('Mean squared error')
+plt.title('Mean squared error on each fold')
+
+# MSE from training and test data
+from sklearn.metrics import mean_squared_error
+train_error = mean_squared_error(tar_train, model.predict(pred_train))
+test_error = mean_squared_error(tar_test, model.predict(pred_test))
+print ('training data MSE')
+print(train_error)
+print ('test data MSE')
+print(test_error)
+
+
+# R-square from training and test data
+rsquared_train=model.score(pred_train,tar_train)
+rsquared_test=model.score(pred_test,tar_test)
+print ('training data R-square')
+print(rsquared_train)
+print ('test data R-square')
+print(rsquared_test)
+
+
+##
+
+from sklearn.linear_model import LassoCV, LassoLarsCV, LassoLarsIC
+
+##next we try and fit using  AIC criterion
+
+model_aic = LassoLarsIC(criterion='aic')
+model_aic.fit(pred_train,tar_train)
+alpha_aic_ = model_aic.alpha_
+
+def plot_ic_criterion(model, name, color):
+    alpha_ = model.alpha_
+    alphas_ = model.alphas_
+    criterion_ = model.criterion_
+    plt.plot(-np.log10(alphas_), criterion_, '--', color=color,
+             linewidth=3, label='%s criterion' % name)
+    plt.axvline(-np.log10(alpha_), color=color, linewidth=3,
+                label='alpha: %s estimate' % name)
+    plt.xlabel('-log(alpha)')
+    plt.ylabel('criterion')
+
+plt.figure()
+plot_ic_criterion(model_aic, 'AIC', 'b')
+
+dict(zip(predictors.columns, model_aic.coef_))
+
+## {'ASEAN_ARF': 0.4817277075830127,
+##  'African': -0.88743192067681231,
+##  'Arab_League': -0.77102456171737688,
+##  'Asian': 0.0,
+##  'CPI2015': 3.4261676420330516,
+##  'Carribean_Central_America': 1.3852468150993107,
+##  'Eu_Member': 0.32737115619068258,
+##  'European': 0.0,
+##  'Is_Nato_Country': 0.64445163494424318,
+##  'Mid_East': -0.64918792797127278,
+##  'North_American': 0.0,
+##  'OPEC': -1.0037125526070625,
+##  'PRS International Country Risk Guide': 0.0,
+##  'South_American': 1.1666702294227076,
+##  'World Economic Forum EOS': -1.1639115442413683,
+##  'Years_In_Nato': 0.0,
+##  'alcconsumption': 0.59855758131369263,
+##  'armedforcesrate': 0.0,
+##  'employrate': -2.2695726938628469,
+##  'femaleemployrate': 1.0671515028671372,
+##  'incomeperperson': 1.191656220279911,
+##  'internetuserate': -2.4535120774767076,
+##  'lifeexpectancy': 0.0}
+
+from sklearn.metrics import mean_squared_error
+train_error_aic = mean_squared_error(tar_train, model_aic.predict(pred_train))
+test_error_aic = mean_squared_error(tar_test, model_aic.predict(pred_test))
+print ('training data MSE')
+print(train_error_aic)
+print ('test data MSE')
+print(test_error_aic)
+
+
+# R-square from training and test data
+rsquared_train_aic=model_aic.score(pred_train,tar_train)
+rsquared_test_aic=model_aic.score(pred_test,tar_test)
+print ('training data R-square')
+print(rsquared_train_aic)
+print ('test data R-square')
+print(rsquared_test_aic)
+

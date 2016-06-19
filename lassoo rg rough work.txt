@@ -1,0 +1,16 @@
+LASSoo
+shrinkage and variable selection
+places constraint on coefficients
+shrinkage some shrink towards zero
+subset of predictors
+can provide greater prediction error
+Increase model interpretability
+greater prediction accuracy
+tunig parameter  lambda
+when lambda is 0
+
+--need to standardzie
+--then import preprocessing
+Least angle rgession
+LAR adds a predictor first add most correlated with the response move towards least square next add predictor most correlated with resids repeats until tested all predictors
+
