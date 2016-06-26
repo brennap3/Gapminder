@@ -77,973 +77,6 @@ data['categories'] = pandas.cut(data['incomeperperson'], bins, labels=group_name
 
 ##now encode european countries
 
-def EUROPEAN (row):
-   if row['country'] == 'Albania' :
-      return 'Europe'
-   elif row['country'] == 'Andorra' :
-      return 'Europe'
-   elif row['country'] == 'Armenia' :
-      return 'Europe'
-   elif row['country'] == 'Azerbaijan' :
-      return 'Europe'   
-   elif row['country'] == 'Austria' :
-      return 'Europe'      
-   elif row['country'] == 'Belarus' :
-      return 'Europe'
-   elif row['country'] == 'Belgium' :
-      return 'Europe'   
-   elif row['country'] == 'Bosnia' :
-      return 'Europe'
-   elif row['country'] == 'Bulgaria' :
-      return 'Europe'   
-   elif row['country'] == 'Croatia' :
-      return 'Europe'   
-   elif row['country'] == 'Cyprus' :
-      return 'Europe'
-   elif row['country'] == 'Czech Republic' :
-      return 'Europe'
-   elif row['country'] == 'Denmark' :
-      return 'Europe'  
-   elif row['country'] == 'Estonia' :
-      return 'Europe'   
-   elif row['country'] == 'Finland' :
-      return 'Europe'      
-   elif row['country'] == 'France' :
-      return 'Europe'      
-   elif row['country'] == 'Georgia' :
-      return 'Europe'            
-   elif row['country'] == 'Germany' :
-      return 'Europe'            
-   elif row['country'] == 'Greece' :
-      return 'Europe'      
-   elif row['country'] == 'Hungary' :
-      return 'Europe'  
-   elif row['country'] == 'Iceland' :
-      return 'Europe'            
-   elif row['country'] == 'Ireland' :
-      return 'Europe'                  
-   elif row['country'] == 'Italy' :
-      return 'Europe'        
-   elif row['country'] == 'Kazakhstan' :
-      return 'Europe'      
-   elif row['country'] == 'Kosovo' :
-      return 'Europe'   
-   elif row['country'] == 'Latvia' :
-       return 'Europe'   
-   elif row['country'] == 'Liechtenstein' :
-       return 'Europe'   
-   elif row['country'] == 'Lithuania' :
-       return 'Europe'   
-   elif row['country'] == 'Luxembourg' :
-       return 'Europe'   
-   elif row['country'] == 'Macedonia' :
-       return 'Europe'   
-   elif row['country'] == 'Malta' :
-       return 'Europe'   
-   elif row['country'] == 'Moldova' :
-       return 'Europe'   
-   elif row['country'] == 'Monaco' :
-       return 'Europe'   
-   elif row['country'] == 'Montenegro' :
-       return 'Europe'   
-   elif row['country'] == 'Netherlands' :
-       return 'Europe'   
-   elif row['country'] == 'Norway' :
-       return 'Europe'   
-   elif row['country'] == 'Poland' :
-       return 'Europe'   
-   elif row['country'] == 'Portugal' :
-       return 'Europe'   
-   elif row['country'] == 'Romania' :
-       return 'Europe'   
-   elif row['country'] == 'Russia' :
-       return 'Europe'   
-   elif row['country'] == 'San Marino' :
-       return 'Europe'   
-   elif row['country'] == 'Serbia' :
-       return 'Europe'   
-   elif row['country'] == 'Slovak Republic' :    
-       return 'Europe'   
-   elif row['country'] == 'Slovenia' :    
-       return 'Europe'   
-   elif row['country'] == 'Spain' :    
-       return 'Europe'   
-   elif row['country'] == 'Sweden' :
-       return 'Europe'   
-   elif row['country'] == 'Switzerland' :
-       return 'Europe'   
-   elif row['country'] == 'Turkey' :       
-       return 'Europe'   
-   elif row['country'] == 'Ukraine' :
-       return 'Europe'   
-   elif row['country'] == 'United Kingdom' :
-       return 'Europe'          
-   else :
-      return 'Not_In_Europe'
-
-data['European'] = data.apply (lambda row: EUROPEAN (row),axis=1)
-
-##check it worked
-
-##'''
-##Out[24]: 
-##Europe            45
-##Not-In-Europe    168
-##dtype: int64
-##'''
-
-data['European'].value_counts(sort=False, dropna=False)
-
-data['country']
-
-##checked working 
-
-def African (row):
-   if row['country'] == 'Algeria' :
-      return 'Africa'
-   elif row['country'] == 'Angola' :
-       return 'Africa'
-   elif row['country'] == 'Benin' :
-       return 'Africa'
-   elif row['country'] == 'Botswana' :
-       return 'Africa'
-   elif row['country'] == 'Burkina Faso' : 
-       return 'Africa'
-   elif row['country'] == 'Burundi' :
-       return 'Africa'
-   elif row['country'] == 'Cameroon' :
-       return 'Africa'
-   elif row['country'] == 'Cape Verde' :
-       return 'Africa'
-   elif row['country'] == 'Central African Republic' :
-       return 'Africa'
-   elif row['country'] == 'Chad' :
-       return 'Africa'
-   elif row['country'] == 'Comoros' :
-       return 'Africa'
-   elif row['country'] == 'Congo, Dem. Rep.' :
-       return 'Africa'    
-   elif row['country'] == 'Congo, Rep.' :
-       return 'Africa'
-   elif row['country'] == 'Djibouti' :
-       return 'Africa'
-   elif row['country'] == 'Equatorial Guinea' :
-       return 'Africa'      
-   elif row['country'] == 'Eritrea' :
-       return 'Africa'  
-   elif row['country'] == 'Ethiopia' :
-       return 'Africa'    
-   elif row['country'] == 'Egypt' :
-       return 'Africa'    		  
-   elif row['country'] == 'Gabon' :
-       return 'Africa'  
-   elif row['country'] == 'Gambia' :
-       return 'Africa'    
-   elif row['country'] == 'Ghana' :
-       return 'Africa'    
-   elif row['country'] == "Cote d'Ivoire":
-       return 'Africa'
-   elif row['country'] == "Guinea-Bissau":
-       return 'Africa'
-   elif row['country'] == "Guinea":
-       return 'Africa'
-   elif row['country'] == "Kenya":
-       return 'Africa'    
-   elif row['country'] == "Lesotho":
-       return 'Africa'    
-   elif row['country'] == "Liberia":
-       return 'Africa'    
-   elif row['country'] == "Libya":
-       return 'Africa'         
-   elif row['country'] == "Madagascar":
-       return 'Africa'    
-   elif row['country'] == "Malawi":
-       return 'Africa'    
-   elif row['country'] == "Mali":
-       return 'Africa'        
-   elif row['country'] == "Mauritania":
-       return 'Africa'   
-   elif row['country'] == "Mauritius":
-       return 'Africa'   
-   elif row['country'] == "Morocco":
-       return 'Africa'   
-   elif row['country'] == "Mozambique":
-       return 'Africa'   
-   elif row['country'] == "Namibia":
-       return 'Africa'       
-   elif row['country'] == "Niger":
-       return 'Africa'         
-   elif row['country'] == "Nigeria":
-       return 'Africa' 
-   elif row['country'] == "Rwanda":
-       return 'Africa' 
-   elif row['country'] == 'Sao Tome and Principe':
-       return 'Africa'
-   elif row['country'] == 'Senegal':
-       return 'Africa'    
-   elif row['country'] == 'Seychelles':
-       return 'Africa'            
-   elif row['country'] == 'Sierra Leone':
-       return 'Africa'            
-   elif row['country'] == 'Somalia':
-       return 'Africa'        
-   elif row['country'] == 'South Sudan':
-       return 'Africa'    
-   elif row['country'] == 'South Africa':
-       return 'Africa'    
-   elif row['country'] == 'Sudan':
-       return 'Africa'    
-   elif row['country'] == 'Swaziland':
-       return 'Africa'     
-   elif row['country'] == 'Tanzania':
-       return 'Africa'     
-   elif row['country'] == 'Togo':
-       return 'Africa'    
-   elif row['country'] == 'Tunisia':
-       return 'Africa'    
-   elif row['country'] == 'Uganda':
-       return 'Africa'    
-   elif row['country'] == 'Zambia':
-       return 'Africa'    
-   elif row['country'] == 'Zimbabwe':
-       return 'Africa'    
-   elif row['country'] == 'Somaliland':
-       return 'Africa'    
-   else :
-       return 'Not_In_Africa'
-
-data['African'] = data.apply (lambda row: African (row),axis=1)     
-
-data['African'].value_counts(sort=False, dropna=False)
-     
-def Asian (row):
-   if row['country'] == 'Afganistan' :
-      return 'Asia'
-   elif row['country'] == 'Armenia' :
-       return 'Asia'
-   elif row['country'] == 'Bahrain' :
-       return 'Asia'       
-   elif row['country'] == 'Bangladesh' :
-       return 'Asia'       
-   elif row['country'] == 'Bhutan' :
-       return 'Asia'       
-   elif row['country'] == 'Brunei' :
-       return 'Asia'       
-   elif row['country'] == 'Cambodia' :
-       return 'Asia'       
-   elif row['country'] == 'China' :
-       return 'Asia'
-   elif row['country'] == 'Georgia' :
-       return 'Asia'
-   elif row['country'] == 'India' :
-       return 'Asia'
-   elif row['country'] == 'Iran' :
-       return 'Asia'	   
-   elif row['country'] == 'Indonesia' :
-       return 'Asia'	   
-   elif row['country'] == 'Iraq' :
-       return 'Asia'	   
-   elif row['country'] == 'Israel' :
-       return 'Asia'	   
-   elif row['country'] == 'Japan' :
-       return 'Asia'	   
-   elif row['country'] == 'Jordan' :
-       return 'Asia'	   
-   elif row['country'] == 'Kazakhstan' :
-       return 'Asia'	   
-   elif row['country'] == 'Korea, Dem. Rep.' :
-       return 'Asia'	   
-   elif row['country'] == 'Korea, Rep.' :
-       return 'Asia'	   	   
-   elif row['country'] == 'Kuwait' :
-       return 'Asia'	   	   
-   elif row['country'] == 'Kyrgyzstan' :
-       return 'Asia'	   	  	
-   elif row['country'] == 'Laos' :
-       return 'Asia'	
-   elif row['country'] == 'Lebanon' :
-       return 'Asia'	
-   elif row['country'] == 'Malaysia' :
-       return 'Asia'	
-   elif row['country'] == 'Maldives' :
-       return 'Asia'		   
-   elif row['country'] == 'Mongolia' :
-       return 'Asia'	
-   elif row['country'] == 'Myanmar' :
-       return 'Asia'	
-   elif row['country'] == 'Nepal' :
-       return 'Asia'	
-   elif row['country'] == 'Oman' :
-       return 'Asia'		 
-   elif row['country'] == 'Pakistan' :
-       return 'Asia'		 
-   elif row['country'] == 'Philippines' :
-       return 'Asia'		 
-   elif row['country'] == 'Qatar' :
-       return 'Asia'		 
-   elif row['country'] == 'Saudi Arabia' :
-       return 'Asia'		 
-   elif row['country'] == 'Singapore' :
-       return 'Asia'		 
-   elif row['country'] == 'Sri Lanka' :
-       return 'Asia'		 
-   elif row['country'] == 'Syria' :
-       return 'Asia'		 	   
-   elif row['country'] == 'Tajikistan' :
-       return 'Asia'		
-   elif row['country'] == 'Thailand' :
-       return 'Asia'		
-   elif row['country'] == 'Timor-Leste' :
-       return 'Asia'		
-   elif row['country'] == 'Turkey' :
-       return 'Asia'		
-   elif row['country'] == 'Turkmenistan' :
-       return 'Asia'	   
-   elif row['country'] == 'United Arab Emirates' :
-       return 'Asia'	   
-   elif row['country'] == 'Uzbekistan' :
-       return 'Asia'	   
-   elif row['country'] == 'Vietnam' :
-       return 'Asia'	   	   
-   elif row['country'] == 'Yemen' :
-       return 'Asia'	   	      
-   else :
-      return 'Not_In_Asia'
-
-data['Asian'] = data.apply (lambda row: Asian (row),axis=1)  
-
-data['Asian'].value_counts(sort=False, dropna=False)   
-
-##data[['country','incomeperperson','polityscore_cat']][(data.European=='Europe') & (data.polityscore_cat!='NA') ]
-
-##data[(data.Asian=='Asian')]
-      
-      
-def Mid_East (row):
-  if   row['country'] == 'Bahrain' :
-       return 'Middle_East'
-  elif row['country'] == 'Cyprus' :
-       return 'Middle_East'
-  elif row['country'] == 'Egypt' :
-       return 'Middle_East'     
-  elif row['country'] == 'Iran' :
-       return 'Middle_East' 	   
-  elif row['country'] == 'Iraq' :
-       return 'Middle_East'	   
-  elif row['country'] == 'Israel' :
-       return 'Middle_East'	   
-  elif row['country'] == 'Jordan' :
-       return 'Middle_East'	   	   
-  elif row['country'] == 'Kuwait' :
-       return 'Middle_East'	   	   
-  elif row['country'] == 'Lebanon' :
-       return 'Middle_East'	
-  elif row['country'] == 'Oman' :
-       return 'Middle_East'		 
-  elif row['country'] == 'Qatar' :
-       return 'Middle_East'		 
-  elif row['country'] == 'Saudi Arabia' :
-       return 'Middle_East'		 
-  elif row['country'] == 'Syria' :
-       return 'Middle_East'		 	   
-  elif row['country'] == 'Turkey' :
-       return 'Middle_East'		
-  elif row['country'] == 'United Arab Emirates' :
-       return 'Middle_East'	   
-  elif row['country'] == 'Yemen' :
-       return 'Middle_East'	   	      
-  else :
-      return 'Not_In_Middle_East'     
-    
-data['Mid_East'] = data.apply (lambda row: Mid_East (row),axis=1)  
-
-data['Mid_East'].value_counts(sort=False, dropna=False)  	
-
-def North_American (row):
-  if   row['country'] == 'Antigua and Barbuda' :
-       return 'North_America'       
-  elif row['country'] == 'Bahamas' :
-       return 'North_America'        
-  elif row['country'] == 'Barbados' :
-       return 'North_America'       
-  elif row['country'] == 'Belize' :
-       return 'North_America'             
-  elif row['country'] == 'Canada' :
-       return 'North_America'           
-  elif row['country'] == 'Costa Rica' :
-       return 'North_America'        
-  elif row['country'] == 'Cuba' :
-       return 'North_America'    
-  elif row['country'] == 'Dominica' :
-       return 'North_America'      
-  elif row['country'] == 'Dominican Republic' :
-       return 'North_America'          
-  elif row['country'] == 'El Salvador' :
-       return 'North_America'
-  elif row['country'] == 'Grenada' :
-       return 'North_America'
-  elif row['country'] == 'Guatemala' :
-       return 'North_America'
-  elif row['country'] == 'Haiti' :
-       return 'North_America'	   
-  elif row['country'] == 'Honduras' :
-       return 'North_America'	  
-  elif row['country'] == 'Jamaica' :
-       return 'North_America'	 
-  elif row['country'] == 'Mexico' :
-       return 'North_America'	
-  elif row['country'] == 'Nicaragua' :
-       return 'North_America'	
-  elif row['country'] == 'Panama' :
-       return 'North_America'	
-  elif row['country'] == 'Panama' :
-       return 'North_America'	
-  elif row['country'] == 'Saint Kitts and Nevis' :
-       return 'North_America'	
-  elif row['country'] == 'Saint Lucia' :
-       return 'North_America'	
-  elif row['country'] == 'Saint Vincent and the Grenadines' :
-       return 'North_America'	
-  elif row['country'] == 'Trinidad and Tobago' :
-       return 'North_America'		   
-  elif row['country'] == 'United States' :
-       return 'North_America'		   
-  else :
-      return 'Not_In_North_America'     
-
-data['North_American'] = data.apply (lambda row: North_American (row),axis=1)  
-
-data['North_American'].value_counts(sort=False, dropna=False)  	
-
-	   
-def Carribean_Central_America (row):
-   if   row['country'] == 'Antigua and Barbuda' :
-       return 'Carribean_Central_American'       
-   elif row['country'] == 'Bahamas' :
-       return 'Carribean_Central_American'        
-   elif row['country'] == 'Barbados' :
-       return 'Carribean_Central_American'       
-   elif row['country'] == 'Belize' :
-       return 'Carribean_Central_American'             
-   elif row['country'] == 'Costa Rica' :
-       return 'Carribean_Central_American'        
-   elif row['country'] == 'Cuba' :
-       return 'Carribean_Central_American'    
-   elif row['country'] == 'Dominica' :
-       return 'Carribean_Central_American'      
-   elif row['country'] == 'Dominican Republic' :
-       return 'Carribean_Central_American'          
-   elif row['country'] == 'El Salvador' :
-       return 'Carribean_Central_American'
-   elif row['country'] == 'Grenada' :
-       return 'Carribean_Central_American'
-   elif row['country'] == 'Guatemala' :
-       return 'Carribean_Central_American'
-   elif row['country'] == 'Haiti' :
-       return 'Carribean_Central_American'	   
-   elif row['country'] == 'Honduras' :
-       return 'Carribean_Central_American'	  
-   elif row['country'] == 'Jamaica' :
-       return 'Carribean_Central_American'	 
-   elif row['country'] == 'Nicaragua' :
-       return 'Carribean_Central_American'	
-   elif row['country'] == 'Panama' :
-       return 'Carribean_Central_American'	
-   elif row['country'] == 'Saint Kitts and Nevis' :
-       return 'Carribean_Central_American'	
-   elif row['country'] == 'Saint Lucia' :
-       return 'Carribean_Central_American'	
-   elif row['country'] == 'Saint Vincent and the Grenadines' :
-       return 'Carribean_Central_American'	
-   elif row['country'] == 'Trinidad and Tobago' :
-       return 'Carribean_Central_American'		   
-   else :
-      return 'Not_In_Carribean_Central_American'     
-	   
-data['Carribean_Central_America'] = data.apply (lambda row: Carribean_Central_America (row),axis=1)  
-
-data['Carribean_Central_America'].value_counts(sort=False, dropna=False)  	
-
-
-	   
-##Algeria, Angola, Ecuador, Iran, Iraq, Kuwait, Libya, Nigeria, Qatar, Saudi Arabia, United Arab Emirates and Venezuela	   
-	   
-	   
-def OPEC (row):
-   if   row['country'] == 'Algeria' :
-       return 'OPEC_MEMBER'       
-   elif row['country'] == 'Angola' :
-       return 'OPEC_MEMBER'        
-   elif row['country'] == 'Ecuador' :
-       return 'OPEC_MEMBER'       
-   elif row['country'] == 'Iran' :
-       return 'OPEC_MEMBER'             
-   elif row['country'] == 'Iraq' :
-       return 'OPEC_MEMBER'        
-   elif row['country'] == 'Kuwait' :
-       return 'OPEC_MEMBER'    
-   elif row['country'] == 'Libya' :
-       return 'OPEC_MEMBER'      
-   elif row['country'] == 'Nigeria' :
-       return 'OPEC_MEMBER'          
-   elif row['country'] == 'Qatar' :
-       return 'OPEC_MEMBER'
-   elif row['country'] == 'Saudi Arabia' :
-       return 'OPEC_MEMBER'
-   elif row['country'] == 'United Arab Emirates' :
-       return 'OPEC_MEMBER'
-   elif row['country'] == 'Venezuela' :
-       return 'OPEC_MEMBER'	   
-   else :
-      return 'Not_In_OPEC'  
-
-data['OPEC'] = data.apply (lambda row: OPEC (row),axis=1)  
-
-data['OPEC'].value_counts(sort=False, dropna=False)  	
-	  
-def Arab_League (row):
-   if   row['country'] == 'Algeria' :
-       return 'Arab_League_MEMBER'       
-   elif row['country'] == 'Bahrain' :
-       return 'Arab_League_MEMBER'        
-   elif row['country'] == 'Comoros' :
-       return 'Arab_League_MEMBER'       
-   elif row['country'] == 'Djibouti' :
-       return 'Arab_League_MEMBER'             
-   elif row['country'] == 'Egypt' :
-       return 'Arab_League_MEMBER'        
-   elif row['country'] == 'Iraq' :
-       return 'Arab_League_MEMBER'    
-   elif row['country'] == 'Jordan' :
-       return 'Arab_League_MEMBER'      
-   elif row['country'] == 'Kuwait' :
-       return 'Arab_League_MEMBER'          
-   elif row['country'] == 'Lebanon' :
-       return 'Arab_League_MEMBER'
-   elif row['country'] == 'Libya' :
-       return 'Arab_League_MEMBER'
-   elif row['country'] == 'Mauritania' :
-       return 'Arab_League_MEMBER'
-   elif row['country'] == 'Morocoo' :
-       return 'Arab_League_MEMBER'	   
-   elif row['country'] == 'Oman' :
-       return 'Arab_League_MEMBER'
-   elif row['country'] == 'West Bank and Gaza' :
-       return 'Arab_League_MEMBER'
-   elif row['country'] == 'Qatar' :
-       return 'Arab_League_MEMBER'
-   elif row['country'] == 'Saudi Arabia' :
-       return 'Arab_League_MEMBER'
-   elif row['country'] == 'Somalia' :
-       return 'Arab_League_MEMBER'
-   elif row['country'] == 'Sudan' :
-       return 'Arab_League_MEMBER'
-   elif row['country'] == 'Syria' :
-       return 'Arab_League_MEMBER'	   
-   elif row['country'] == 'Tunisia' :
-       return 'Arab_League_MEMBER'	   	 
-   elif row['country'] == 'United Arab Emirates' :
-       return 'Arab_League_MEMBER'	   	 
-   elif row['country'] == 'Yemen' :
-       return 'Arab_League_MEMBER'	   
-   elif row['country'] == 'Eritrea' :
-       return 'Arab_League_MEMBER'	
-   else :
-      return 'Not_In_Arab_League'  
-##
-      
-data['Arab_League'] = data.apply (lambda row: Arab_League (row),axis=1)  
-
-data['Arab_League'].value_counts(sort=False, dropna=False)  	
-      
-##ASEAN is a regional grouping with security, economic and social aspects	  
-	  
-def ASEAN_ARF (row):
-   if row['country'] == 'Australia' :
-      return 'ASEAN_ARF_MEMBER'
-   elif row['country'] == 'Bangladesh' :
-       return 'ASEAN_ARF_MEMBER'
-   elif row['country'] == 'Brunei' :
-       return 'ASEAN_ARF_MEMBER'       
-   elif row['country'] == 'Cambodia' :
-       return 'ASEAN_ARF_MEMBER'       
-   elif row['country'] == 'Canada' :
-       return 'ASEAN_ARF_MEMBER'       
-   elif row['country'] == 'China' :
-       return 'ASEAN_ARF_MEMBER'       
-   elif row['country'] == 'India' :
-       return 'ASEAN_ARF_MEMBER'       
-   elif row['country'] == 'Indonesia' :
-       return 'ASEAN_ARF_MEMBER'
-   elif row['country'] == 'Japan' :
-       return 'ASEAN_ARF_MEMBER'
-   elif row['country'] == 'Korea, Dem. Rep.' :
-       return 'ASEAN_ARF_MEMBER'
-   elif row['country'] == 'Korea, Rep.' :
-       return 'ASEAN_ARF_MEMBER'	   
-   elif row['country'] == 'Laos' :
-       return 'ASEAN_ARF_MEMBER'	   
-   elif row['country'] == 'Malaysia' :
-       return 'ASEAN_ARF_MEMBER'	   
-   elif row['country'] == 'Myanmar' :
-       return 'ASEAN_ARF_MEMBER'	   
-   elif row['country'] == 'Mongolia' :
-       return 'ASEAN_ARF_MEMBER'	   
-   elif row['country'] == 'New Zealand' :
-       return 'ASEAN_ARF_MEMBER'	   
-   elif row['country'] == 'Pakistan' :
-       return 'ASEAN_ARF_MEMBER'	   
-   elif row['country'] == 'Papua New Guinea' :
-       return 'ASEAN_ARF_MEMBER'	   
-   elif row['country'] == 'Phillipines' :
-       return 'ASEAN_ARF_MEMBER'	   	   
-   elif row['country'] == 'Russian Federation' :
-       return 'ASEAN_ARF_MEMBER'	   	   
-   elif row['country'] == 'Singapore' :
-       return 'ASEAN_ARF_MEMBER'	   	  	
-   elif row['country'] == 'Sri Lanka' :
-       return 'ASEAN_ARF_MEMBER'	
-   elif row['country'] == 'Thailand' :
-       return 'ASEAN_ARF_MEMBER'	
-   elif row['country'] == 'Timor-Leste' :
-       return 'ASEAN_ARF_MEMBER'	
-   elif row['country'] == 'United States' :
-       return 'ASEAN_ARF_MEMBER'		   
-   elif row['country'] == 'Vietnam' :
-       return 'ASEAN_ARF_MEMBER'	
-   else :
-      return 'Not_In_ASEAN_ARF'
-
-data['ASEAN_ARF'] = data.apply (lambda row: ASEAN_ARF (row),axis=1)  
-
-data['ASEAN_ARF'].value_counts(sort=False, dropna=False)  	
- 	  
-
-def South_American (row):
-   if row['country'] == 'Argentina' :
-      return 'South_America'
-   elif row['country'] == 'Bolivia' :
-       return 'South_America'
-   elif row['country'] == 'Brazil' :
-       return 'South_America'       
-   elif row['country'] == 'Chile' :
-       return 'South_America'       
-   elif row['country'] == 'Colombia' :
-       return 'South_America'       
-   elif row['country'] == 'Ecuador' :
-       return 'South_America'       
-   elif row['country'] == 'Guyana' :
-       return 'South_America'       
-   elif row['country'] == 'Paraguay' :
-       return 'South_America'
-   elif row['country'] == 'Peru' :
-       return 'South_America'
-   elif row['country'] == 'Suriname' :
-       return 'South_America'
-   elif row['country'] == 'Uruguay' :
-       return 'South_America'	   
-   elif row['country'] == 'Venezuala' :
-       return 'South_America'	   
-   else :
-      return 'Not_South_America'
-
-
-data['South_American'] = data.apply (lambda row: South_American (row),axis=1)  
-
-data['South_American'].value_counts(sort=False, dropna=False)  	
-
-##	
-
-###http://www.nato.int/cps/en/natohq/topics_52044.htm
-
-##NATO data
-
-Nato_Countries = pandas.DataFrame({ 'country' : ('Albania','Belgium','Bulgaria','Canada','Croatia','Czech Republic','Denmark','Estonia','France','Germany','Greece','Hungary','Iceland','Italy','Latvia','Lithuania','Luxembourg','Netherlands','Norway','Poland','Portugal','Romania','Slovak Republic','Slovenia','Spain','Turkey','United Kingdom','United States'),
-                     'Year_Joined' : (2009,1949,2004,1949,2009,1999,1949,2004,1949,1955,1952,1999,1949,1949,2004,2004,1949,1949,1949,1999,1949,2004,2004,2004,1982,1952,1949,1949),
-                     'Is_Nato_Country' : 'Nato_Member'
-                        })
-
-##Enhanced data join NATO data
-
-data.columns.values 
-
-
-data=pandas.merge(data, Nato_Countries,how='left',on='country')
-
-##data.columns.values
-##check that all column values have been added
-
-
-data['Is_Nato_Country']=data['Is_Nato_Country'].fillna('Not_in_Nato')
-
-##
-
-data['Is_Nato_Country'].value_counts(sort=False, dropna=False)  
-
-
-
-
-data.columns.values
-##year joined needs to be renamed
-data.rename(columns={'Year_Joined': 'Year_Joined_Nato'}, inplace=True)
-## change columns names
-data.columns.values
-
-def EUMEMBER (row):
-   if row['country'] == 'Austria' :
-      return 'EU'
-   elif row['country'] == 'Belgium' :
-      return 'EU'
-   elif row['country'] == 'Bulgaria' :
-      return 'EU'   
-   elif row['country'] == 'Croatia' :
-      return 'EU'   
-   elif row['country'] == 'Cyprus' :
-      return 'EU'
-   elif row['country'] == 'Czech Republic' :
-      return 'EU'
-   elif row['country'] == 'Denmark' :
-      return 'EU'  
-   elif row['country'] == 'Estonia' :
-      return 'EU'   
-   elif row['country'] == 'Finland' :
-      return 'EU'      
-   elif row['country'] == 'France' :
-      return 'EU'      
-   elif row['country'] == 'Germany' :
-      return 'EU'            
-   elif row['country'] == 'Greece' :
-      return 'EU'      
-   elif row['country'] == 'Hungary' :
-      return 'EU'  
-   elif row['country'] == 'Ireland' :
-      return 'EU'                  
-   elif row['country'] == 'Italy' :
-      return 'EU'        
-   elif row['country'] == 'Latvia' :
-       return 'EU'   
-   elif row['country'] == 'Lithuania' :
-       return 'EU'   
-   elif row['country'] == 'Luxembourg' :
-       return 'EU'   
-   elif row['country'] == 'Malta' :
-       return 'EU'   
-   elif row['country'] == 'Netherlands' :
-       return 'EU'   
-   elif row['country'] == 'Poland' :
-       return 'EU'   
-   elif row['country'] == 'Portugal' :
-       return 'EU'   
-   elif row['country'] == 'Romania' :
-       return 'EU'   
-   elif row['country'] == 'Slovak Republic' :    
-       return 'EU'   
-   elif row['country'] == 'Slovenia' :    
-       return 'EU'   
-   elif row['country'] == 'Spain' :    
-       return 'EU'   
-   elif row['country'] == 'Sweden' :
-       return 'EU'   
-   elif row['country'] == 'United Kingdom' :
-       return 'EU'          
-   else :
-      return 'Not_In_EU'
-
-
-data['Eu_Member'] = data.apply (lambda row: EUMEMBER (row),axis=1)	   
-
-data['Eu_Member'].value_counts(sort=False, dropna=False)  
-
-data.columns.values 	   
-
-import time
-##check how to calc time
-print (time.strftime("%Y"))
-##write unction to calculate the  age of NATO countries based on the current date
-def AGE_YEARS (row):
-   current_year=time.strftime("%Y")
-   if row['Year_Joined_Nato'] >0 :
-      return (int(current_year)-int(row['Year_Joined_Nato']))
-   else :
-      return 0
-
-##calculate the age of NATO countries
-data['Years_In_Nato'] = data.apply (lambda row: AGE_YEARS (row),axis=1)
-##calculate the age of NAto countries
-print("distribution of years in NATO for Nato Countries")
-pp2=data['Years_In_Nato'].value_counts(sort=False, dropna=False)
-print(pp2)
-##Mean number of years in NATO by european or Non EU
-print("Mean years of countries in NATO for European and Non European Countries")
-pp3=data[data['Years_In_Nato']>0]['Years_In_Nato'].groupby(data['Eu_Member']).mean()
-print(pp3)
-##Count of countries in EU who are not in not in NATO
-print("Count of countries in NATO for European and Non European Countries")
-pp4=data[data['Years_In_Nato']>0]['Years_In_Nato'].groupby(data['Eu_Member']).count()
-print(pp4)
-
-def EU_NATO (Nato_Membership,EU_Membership):
-   if Nato_Membership == 'Nato_Member' and EU_Membership== 'EU' :
-      return 'Nato_And_EU'
-   elif Nato_Membership == 'Nato_Member' and EU_Membership == 'Not-In-EU':
-      return 'Nato_Not_In_EU'
-   elif Nato_Membership != 'Nato_Member' and EU_Membership== 'EU' :
-      return 'Not_In_Nato_In_EU'    
-   else :
-      return 'Not_In_Nato_Not_In_EU'
-      
-      
-EU_NATO('Nato_Member','EU')
-##test
-##apply the function
-data['NATO_EU_MEMBERSHIP'] = data.apply (lambda row: EU_NATO(row['Is_Nato_Country'],row['Eu_Member']),axis=1)
-
-data.columns.values 
-
-def polityscore_cat (row):
-   if (row['polityscore'] >=6 and row['polityscore'] <= 10 ) :
-      return 'Democracy'
-   elif (row['polityscore'] >=-5 and row['polityscore'] <= 5 )  :
-      return 'Anocracy'
-   elif (row['polityscore'] >=-10 and row['polityscore'] <= -6 )  :
-      return 'Autocracy'   
-   else :
-      return 'NA'
-
-
-##calculate the age of NATO countries
-##data['Years_In_Nato'] = data.apply (lambda row: AGE_YEARS (row),axis=1)
-data['polityscore_cat'] = data.apply (lambda row: polityscore_cat (row),axis=1)
-
-
-data.columns.values
-
-
-##array(['country', 'incomeperperson', 'alcconsumption', 'armedforcesrate',
-##       'breastcancerper100th', 'co2emissions', 'femaleemployrate',
-##       'hivrate', 'internetuserate', 'lifeexpectancy', 'oilperperson',
-##       'polityscore', 'relectricperperson', 'suicideper100th',
-##       'employrate', 'urbanrate', 'categories', 'European', 'African',
-##       'Asian', 'Mid_East', 'North_American', 'Carribean_Central_America',
-##       'OPEC', 'Arab_League', 'ASEAN_ARF', 'South_American',
-##       'Is_Nato_Country', 'Year_Joined_Nato', 'Eu_Member', 'Years_In_Nato',
-##       'NATO_EU_MEMBERSHIP', 'polityscore_cat'], dtype=object)
- 
-##data = data.drop('Is_Nato_Country_y', 1)
-##data.rename(columns={'Is_Nato_Country_x': 'Is_Nato_Country'}, inplace=True)
-
-
-
-            
-
-
-data['European'].value_counts(sort=False, dropna=False)  	
-
-data['European'].replace("Europe",1,inplace=True)  
-data['European'].replace("Not_In_Europe",0,inplace=True)
-
-data['African'].value_counts(sort=False, dropna=False)  	
-
-data['African'].replace("Africa",1,inplace=True)  
-data['African'].replace("Not_In_Africa",0,inplace=True)
-
-data['African'].value_counts(sort=False, dropna=False)  	
-
-data['Asian'].value_counts(sort=False, dropna=False)
-
-data['Asian'].replace("Asia",1,inplace=True)  
-data['Asian'].replace("Not_In_Asia",0,inplace=True)
-
-data['Asian'].value_counts(sort=False, dropna=False)
-
-
-##'Mid_East'
-
-data['Mid_East'].value_counts(sort=False, dropna=False)
-
-data['Mid_East'].replace("Middle_East",1,inplace=True)  
-data['Mid_East'].replace("Not_In_Middle_East",0,inplace=True)
-
-data['Mid_East'].value_counts(sort=False, dropna=False)
-
-data['North_American'].value_counts(sort=False, dropna=False)
-
-data['North_American'].replace("North_America",1,inplace=True)  
-data['North_American'].replace("Not_In_North_America",0,inplace=True)
-
-data['North_American'].value_counts(sort=False, dropna=False)
-
-data['Carribean_Central_America'].value_counts(sort=False, dropna=False)
-
-data['Carribean_Central_America'].replace("Carribean_Central_American",1,inplace=True)  
-data['Carribean_Central_America'].replace("Not_In_Carribean_Central_American",0,inplace=True)
-
-data['Carribean_Central_America'].value_counts(sort=False, dropna=False)
-
-data['OPEC'].replace("OPEC_MEMBER",1,inplace=True)  
-data['OPEC'].replace("Not_In_OPEC",0,inplace=True)
-
-data['OPEC'].value_counts(sort=False, dropna=False)
-
-data['Arab_League'].value_counts(sort=False, dropna=False)
-
-data['Arab_League'].replace("Not_In_Arab_League",0,inplace=True)  
-data['Arab_League'].replace("Arab_League_MEMBER",1,inplace=True)
-
-data['Arab_League'].value_counts(sort=False, dropna=False)
-
-##'ASEAN_ARF'
-
-data['ASEAN_ARF'].value_counts(sort=False, dropna=False)
-
-data['ASEAN_ARF'].replace("Not_In_ASEAN_ARF",0,inplace=True)  
-data['ASEAN_ARF'].replace("ASEAN_ARF_MEMBER",1,inplace=True)
-
-data['ASEAN_ARF'].value_counts(sort=False, dropna=False)
-
-##'South_American'
-
-data['South_American'].value_counts(sort=False, dropna=False)
-
-data['South_American'].replace("Not_South_America",0,inplace=True)  
-data['South_American'].replace("South_America",1,inplace=True)
-
-data['South_American'].value_counts(sort=False, dropna=False)
-
-##'Is_Nato_Country'
-
-data['Is_Nato_Country'].value_counts(sort=False, dropna=False)
-
-data['Is_Nato_Country'].replace("Not_in_Nato",0,inplace=True)  
-data['Is_Nato_Country'].replace("Nato_Member",1,inplace=True)
-
-data['Is_Nato_Country'].value_counts(sort=False, dropna=False)
-
-##'Eu_Member'
-
-data['Eu_Member'].value_counts(sort=False, dropna=False)
-
-data['Eu_Member'].replace("Not_In_EU",0,inplace=True)  
-data['Eu_Member'].replace("EU",1,inplace=True)
-
-data['Eu_Member'].value_counts(sort=False, dropna=False)
-
-
-##'polityscore_cat'
-
-data['polityscore_cat'].value_counts(sort=False, dropna=False)
-
-data['polityscore_cat'].replace("Anocracy",0,inplace=True)
-data['polityscore_cat'].replace("Autocracy",0,inplace=True)
-data['polityscore_cat'].replace("NA",0,inplace=True)  
-data['polityscore_cat'].replace("Democracy",1,inplace=True)
-
-data['polityscore_cat'].value_counts(sort=False, dropna=False)
-
-
-
-
-
 
 ##
 
@@ -1051,7 +84,6 @@ data['polityscore_cat'].value_counts(sort=False, dropna=False)
 ##note to one self HIV rates missing froma lot of countries
 
 
- 
 datatransparency = pandas.read_csv('CPI_2015_DATA.csv', low_memory=False)
 
 
@@ -1210,15 +242,21 @@ to use the Elbow Method to identify number of clusters to choose
 """
 
 plt.plot(clusters, meandist)
+plt.xlim(0)
+plt.ylim(0)
 plt.xlabel('Number of clusters')
 plt.ylabel('Average distance')
 plt.title('Selecting k with the Elbow Method')
 
 
 
-##
+####From the scree plot lets see what we can see
+#principal component analysis
+## lets create a scree plot to see how much of the variance our 
 
-## Interpret 2 cluster solution
+ 
+
+###
 
 model2=KMeans(n_clusters=2)
 model2.fit(data_clean2)
@@ -1233,6 +271,7 @@ plt.xlabel('Canonical variable 1')
 plt.ylabel('Canonical variable 2')
 plt.title('Scatterplot of Canonical Variables for 2 Clusters')
 plt.show()
+
 
 
 
@@ -1268,6 +307,21 @@ plt.title('Scatterplot of Canonical Variables for 5 Clusters')
 plt.show()
 
 
+##now try t-sme
+
+
+X_tsne3 = TSNE(learning_rate=100).fit_transform(data_clean2)
+plt.scatter(X_tsne3[:, 0], X_tsne3[:, 1], c=model3.labels_)
+plt.title("T-sne Plot categories Polity scores for 3 cluster")
+
+
+X_tsne5 = TSNE(learning_rate=100).fit_transform(data_clean2)
+plt.scatter(X_tsne5[:, 0], X_tsne5[:, 1], c=model5.labels_)
+plt.title("T-sne Plot categories Polity scores for 5 cluster")
+
+##these are not effective at finding linear or non linear combinations of variables
+
+
 # k=3 or k=5 gives the best split 
 # create a unique identifier variable from the index for the 
 # cluster training data to merge with the cluster assignment variable
@@ -1295,8 +349,8 @@ newclus.reset_index(level=0, inplace=True)
 # by the index variable
 merged_clust_names=pd.merge(data_clean2, newclus, on='index')
 merged_clust_names.head(n=100)
+merged_clust_names.columns.names
 # cluster frequencies
-merged_train.cluster.value_counts()
 ###
 #
 #
@@ -1315,7 +369,7 @@ newcountry['country']
 #
 ###
 merged_clust_names_country=pd.merge(merged_clust_names, newcountry, on='index')
-
+merged_clust_names_country[['country']]
 ##we can quickly see from applying 
 
 clustergrp = merged_clust_names_country.groupby('cluster').mean()
@@ -1325,29 +379,509 @@ print(clustergrp)
 
 '''
 print(clustergrp)
+
               index  incomeperperson  alcconsumption  armedforcesrate  \
 cluster                                                                 
 0        108.781250         1.235069        0.615147         0.038096   
-1        106.600000        -0.714120       -0.458502        -0.585297   
-2        101.377358        -0.408853       -0.155135         0.253082   
+1        100.423077        -0.407125       -0.154069         0.255742   
+2        108.307692        -0.705835       -0.448967        -0.558371   
 
          femaleemployrate  internetuserate  lifeexpectancy  employrate  \
 cluster                                                                  
 0                0.132927         1.260777        0.909442   -0.020729   
-1                1.250003        -0.999537       -1.174332    1.260173   
-2               -0.669882        -0.289745        0.004833   -0.581906   
+1               -0.698979        -0.291682       -0.000986   -0.610994   
+2                1.234355        -0.968362       -1.117341    1.247499   
 
           CPI2015  World Economic Forum EOS  \
 cluster                                       
 0        1.349325                  1.234625   
-1       -0.771329                 -0.772898   
-2       -0.450852                 -0.380860   
+1       -0.449433                 -0.382780   
+2       -0.761841                 -0.753979   
 
          PRS International Country Risk Guide  polityscore  
 cluster                                                     
 0                                    1.311189     0.529000  
-1                                   -0.656404    -0.581706  
-2                                   -0.482037    -0.045007  
+1                                   -0.478346    -0.058928  
+2                                   -0.657079    -0.533222  
+'''
+
+# validate clusters in training data by examining cluster differences in GPA using ANOVA
+# first have to merge GPA with clustering variables and cluster assignment data
+
+
+
+import patsy
+import pandas
+import statsmodels
+import statsmodels.formula.api as smf
+import statsmodels.stats.multicomp as multi 
+
+##sub1.apply(lambda x: pd.to_numeric('cluster', errors='ignore'))
+
+polity_score_train, polity_score_test = train_test_split(merged_clust_names_country, test_size=.3, random_state=123)
+
+sub1 = polity_score_train[['cluster','polityscore']] 
+sub1.dtypes
+
+
+sub1['cluster_str'] = sub1['cluster'].astype(str)
+
+
+polityscoremod= smf.ols(formula='polityscore ~ C(cluster)', data=sub1).fit()
+print (polityscoremod.summary())
+'''
+print (gpamod.summary())
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:            polityscore   R-squared:                       0.154
+Model:                            OLS   Adj. R-squared:                  0.131
+Method:                 Least Squares   F-statistic:                     6.730
+Date:                Wed, 22 Jun 2016   Prob (F-statistic):            0.00206
+Time:                        22:37:15   Log-Likelihood:                -104.11
+No. Observations:                  77   AIC:                             214.2
+Df Residuals:                      74   BIC:                             221.2
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+===================================================================================
+                      coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------
+Intercept           0.5299      0.199      2.664      0.009         0.134     0.926
+C(cluster)[T.1]    -0.5851      0.256     -2.285      0.025        -1.095    -0.075
+C(cluster)[T.2]    -1.0770      0.296     -3.641      0.001        -1.666    -0.488
+==============================================================================
+Omnibus:                       24.509   Durbin-Watson:                   1.793
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               33.820
+Skew:                          -1.444   Prob(JB):                     4.53e-08
+Kurtosis:                       4.483   Cond. No.                         4.02
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+'''
+print ('means for PolityScore by cluster')
+m1= sub1.groupby('cluster').mean()
+print (m1)
+
+print ('standard deviations for polityscore by cluster')
+m2= sub1.groupby('cluster').std()
+print (m2)
+
+mc1 = multi.MultiComparison(sub1['polityscore'], sub1['cluster'])
+res1 = mc1.tukeyhsd()
+print(res1.summary())
+
+####
+#######
+#######
+####
+
+#########
+###
+#
+''''
+Multiple Comparison of Means - Tukey HSD,FWER=0.05
+=============================================
+group1 group2 meandiff  lower   upper  reject
+---------------------------------------------
+  0      1    -0.5851  -1.1976  0.0274 False 
+  0      2     -1.077  -1.7845 -0.3696  True 
+  1      2    -0.4919  -1.1422  0.1583 False 
+---------------------------------------------
+
+Tukey HSD
 
 '''
+
+import matplotlib.pyplot as plt
+from matplotlib.patches import Polygon
+
+### lets visualize this
+
+sub1pivot=sub1.copy
+sub2=pd.DataFrame(sub1[['cluster_str','polityscore']])
+sub2['idx'] = sub2.groupby('cluster_str').cumcount()
+
+sub2.reset_index()
+sub2.dtypes
+pivoted = sub2.pivot(columns='cluster_str', values='polityscore')
+pivoted.columns.names
+pivoted.reset_index()
+pivoted[['0','1','2']]
+pivoted.dtypes
+pivotedplt=pivoted[['0','1','2']].reset_index()
+
+ggplot(sub1, aes(x='cluster', y='polityscore')) + geom_boxplot() +ggtitle("boxplot of Polity scores -versus-cluster (3 cluster model)")+
+
+###
+#
+###
+'''
+Okay there seems to be a problem with this we are only seeing a statistically significant at the p = 0.05 level
+We can even see from the boxplot there is an overlap of the plotly scores. 
+'''
+
+##From the scree plot lets see what we can see
+
+
+pca = PCA(n_components=11)
+ 
+pca.fit(data_clean2[['incomeperperson', 'alcconsumption', 'armedforcesrate',
+         'femaleemployrate',
+         'internetuserate', 'lifeexpectancy', 
+         'employrate',  
+         'CPI2015','World Economic Forum EOS','PRS International Country Risk Guide',
+         'polityscore']])
+
+#The amount of variance that each PC explains
+ varianceexplainedbyPCACOMP= pca.explained_variance_ratio_
+##
+ PCACUMPLOT=np.cumsum(np.round(pca.explained_variance_ratio_, decimals=4)*100)
+
+
+plt.plot(PCACUMPLOT)
+
+## wow the first two components hold more than 80% of the variance
+
+##
+
+tran_pca = pca.fit(data_clean2[['incomeperperson', 'alcconsumption', 'armedforcesrate',
+         'femaleemployrate',
+         'internetuserate', 'lifeexpectancy', 
+         'employrate',  
+         'CPI2015','World Economic Forum EOS','PRS International Country Risk Guide',
+         'polityscore']]).transform(data_clean2[['incomeperperson', 'alcconsumption', 'armedforcesrate',
+         'femaleemployrate',
+         'internetuserate', 'lifeexpectancy', 
+         'employrate',  
+         'CPI2015','World Economic Forum EOS','PRS International Country Risk Guide',
+         'polityscore']])
+ 
+df_pca = pd.DataFrame(tran_pca)
+
+df_pca.columns = [['pc1', 'pc2', 'pc3', 'pc4','pc5','pc6','pc7','pc8','pc9','pc10','pc11']]
+df_pca['y'] = merged_clust_names_country[['cluster']]
+df_pca.head()
+
+##lets create a biplot
+
+import seaborn as sns
+
+np_cluster=merged_clust_names_country[['cluster']].as_matrix()
+
+# Scatter plot based and assigne color based on 'label - y'
+sns.lmplot('pc1', 'pc2', data=df_pca, fit_reg = False,  size = 15, hue='y', scatter_kws={"s": 100})
+
+
+# set the maximum variance of the first two PCs
+# this will be the end point of the arrow of each **original features**
+xvector = pca.components_[0]
+yvector = pca.components_[1]
+ 
+X=data_clean2[['incomeperperson', 'alcconsumption', 'armedforcesrate',
+         'femaleemployrate',
+         'internetuserate', 'lifeexpectancy', 
+         'employrate',  
+         'CPI2015','World Economic Forum EOS','PRS International Country Risk Guide',
+         'polityscore']]
+# value of the first two PCs, set the x, y axis boundary
+xs = pca.transform(X)[:,0]
+ys = pca.transform(X)[:,1]
+
+for i in range(len(xvector)):
+    # arrows project features (ie columns from csv) as vectors onto PC axes
+    # we can adjust length and the size of the arrow
+    plt.arrow(0, 0, xvector[i]*max(xs), yvector[i]*max(ys),
+              color='r', width=0.005, head_width=0.05)
+    plt.text(xvector[i]*max(xs)*1.1, yvector[i]*max(ys)*1.1,
+             list(X.columns.values)[i], color='r')
+
+np_df = data_clean2_pre[['country']].as_matrix()
+##np_df[0] rember numpy arrays are 0 indexed
+for i in range(len(xs)):
+    plt.text(xs[i]*1.08, ys[i]*1.08, np_df[i],color='b') # index number of each observations
+plt.title('PCA Plot of first PCs')
+
+
+
+########
+###
+##lets try 5 clusters
+#
+#
+##
+#######
+## Interpret 5 cluster solution
+
+model5=KMeans(n_clusters=5)
+model5.fit(data_clean2)
+clusassign5=model2.predict(data_clean2)
+
+
+# create a list that has the new index variable
+cluslist5=list(data_clean2['index'])
+# create a list of cluster assignments
+labels5=list(model5.labels_)
+# combine index variable list with cluster assignment list into a dictionary
+newlist5=dict(zip(cluslist5, labels5))
+newlist5
+# convert newlist dictionary to a dataframe
+newclus5=DataFrame.from_dict(newlist5, orient='index')
+newclus5
+# rename the cluster assignment column
+newclus5.columns = ['cluster']
+newclus5['cluster']
+
+# now do the same for the cluster assignment variable
+# create a unique identifier variable from the index for the 
+# cluster assignment dataframe 
+# to merge with cluster training data
+newclus5.reset_index(level=0, inplace=True)
+
+newclus5.columns.values
+
+# merge the cluster assignment dataframe with the cluster training variable dataframe
+# by the index variable
+merged_clust_names5=pd.merge(data_clean2, newclus5,on='index')
+merged_clust_names5.head(n=100)
+merged_clust_names5.columns.names
+# cluster frequencies
+###
+#
+#
+###
+##data_clean2_pre.reset_index(level=0, inplace=True)
+countrylist=list(data_clean2_pre['country'])
+countrylistindex=list(data_clean2_pre['index'])
+newcountrylist=dict(zip(countrylistindex,countrylist))
+newcountry=DataFrame.from_dict(newcountrylist,orient='index')
+newcountry.columns = ['country']
+newcountry['country']
+newcountry.reset_index(level=0, inplace=True)
+newcountry['country']
+###
+#
+#
+###
+merged_clust_names_country5=pd.merge(merged_clust_names5, newcountry, on='index')
+merged_clust_names_country5[['country']]
+##we can quickly see from applying 
+
+clustergrp5 = merged_clust_names_country5.groupby('cluster').mean()
+print ("Clustering variable means by cluster")
+print(clustergrp5)
+
+
+######
+###
+#
+###
+#####
+
+##sub1.apply(lambda x: pd.to_numeric('cluster', errors='ignore'))
+
+polity_score_train_cl5, polity_score_test_cl5 = train_test_split(merged_clust_names_country5, test_size=.3, random_state=123)
+
+sub2 = polity_score_train_cl5[['cluster','polityscore']] 
+sub2.dtypes
+
+
+sub2['cluster_str'] = sub2['cluster'].astype(str)
+
+
+polityscoremod= smf.ols(formula='polityscore ~ C(cluster_str)', data=sub2).fit()
+print (polityscoremod.summary())
+
+''''
+print (polityscoremod.summary())
+
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:            polityscore   R-squared:                       0.384
+Model:                            OLS   Adj. R-squared:                  0.350
+Method:                 Least Squares   F-statistic:                     11.22
+Date:                Sat, 25 Jun 2016   Prob (F-statistic):           3.95e-07
+Time:                        02:41:52   Log-Likelihood:                -91.891
+No. Observations:                  77   AIC:                             193.8
+Df Residuals:                      72   BIC:                             205.5
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+=======================================================================================
+                          coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------------
+Intercept               0.3820      0.213      1.793      0.077        -0.043     0.807
+C(cluster_str)[T.1]    -1.4672      0.337     -4.355      0.000        -2.139    -0.796
+C(cluster_str)[T.2]    -0.9972      0.289     -3.456      0.001        -1.572    -0.422
+C(cluster_str)[T.3]    -0.1227      0.282     -0.435      0.665        -0.685     0.439
+C(cluster_str)[T.4]     0.3947      0.307      1.287      0.202        -0.217     1.006
+==============================================================================
+Omnibus:                       29.390   Durbin-Watson:                   1.957
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               54.126
+Skew:                          -1.421   Prob(JB):                     1.76e-12
+Kurtosis:                       5.965   Cond. No.                         5.97
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+''''
+
+##yep yep we can reject the NUll hypothesis at 0.05 level
+
+mc5 = multi.MultiComparison(sub2['polityscore'], sub2['cluster_str'])
+res5 = mc5.tukeyhsd()
+print(res5.summary())
+
+'''''
+mc5 = multi.MultiComparison(sub2['polityscore'], sub2['cluster_str'])
+res5 = mc5.tukeyhsd()
+print(res5.summary())
+
+Multiple Comparison of Means - Tukey HSD,FWER=0.05
+=============================================
+group1 group2 meandiff  lower   upper  reject
+---------------------------------------------
+  0      1    -1.4672   -2.41  -0.5245  True 
+  0      2    -0.9972  -1.8045 -0.1898  True 
+  0      3    -0.1227  -0.9115  0.666  False 
+  0      4     0.3947  -0.4634  1.2529 False 
+  1      2      0.47   -0.4408  1.3809 False 
+  1      3     1.3445   0.4501  2.2389  True 
+  1      4     1.862    0.9058  2.8181  True 
+  2      3     0.8744   0.1242  1.6247  True 
+  2      4     1.3919   0.569   2.2149  True 
+  3      4     0.5175  -0.2872  1.3222 False 
+---------------------------------------------
+
+'''''
+
+
+
+########
+####
+##
+####
+#######
+
+
+
+df_pca['y'] = merged_clust_names_country5[['cluster']]
+df_pca.head(109)
+
+##lets create a biplot
+
+
+# Scatter plot based and assigne color based on 'label - y'
+sns.lmplot('pc1', 'pc2', data=df_pca, fit_reg = False,  size = 15, hue='y', scatter_kws={"s": 100})
+
+
+# set the maximum variance of the first two PCs
+# this will be the end point of the arrow of each **original features**
+xvector = pca.components_[0]
+yvector = pca.components_[1]
+ 
+X=data_clean2[['incomeperperson', 'alcconsumption', 'armedforcesrate',
+         'femaleemployrate',
+         'internetuserate', 'lifeexpectancy', 
+         'employrate',  
+         'CPI2015','World Economic Forum EOS','PRS International Country Risk Guide',
+         'polityscore']]
+# value of the first two PCs, set the x, y axis boundary
+xs = pca.transform(X)[:,0]
+ys = pca.transform(X)[:,1]
+
+for i in range(len(xvector)):
+    # arrows project features (ie columns from csv) as vectors onto PC axes
+    # we can adjust length and the size of the arrow
+    plt.arrow(0, 0, xvector[i]*max(xs), yvector[i]*max(ys),
+              color='r', width=0.005, head_width=0.05)
+    plt.text(xvector[i]*max(xs)*1.1, yvector[i]*max(ys)*1.1,
+             list(X.columns.values)[i], color='r')
+
+np_df = data_clean2_pre[['country']].as_matrix()
+##np_df[0] rember numpy arrays are 0 indexed
+for i in range(len(xs)):
+    plt.text(xs[i]*1.08, ys[i]*1.08, np_df[i],color='b') # index number of each observations
+plt.title('PCA Plot of first PCs PCA1 and PCA2')
+
+
+
+#####
+##
+#
+##
+#####
+
+'''
+Besides looking at Just the PCA plots lets look at another dimension reduction technique t-sne and visualize our data that way
+
+'''
+
+from sklearn.manifold import TSNE
+
+data2tsne=datafullset[['country','incomeperperson', 'alcconsumption', 'armedforcesrate',
+         'femaleemployrate',
+         'internetuserate', 'lifeexpectancy', 
+         'employrate',  
+         'CPI2015','World Economic Forum EOS','PRS International Country Risk Guide',
+         'polityscore']]
+         
+##run categorization on polityscore
+         
+         
+def polityscore_cat (row):
+   if (row['polityscore'] >=6 and row['polityscore'] <= 10 ) :
+      return 1 ##democracy
+   elif (row['polityscore'] >=-5 and row['polityscore'] <= 5 )  :
+      return 2 ##anocracy
+   elif (row['polityscore'] >=-10 and row['polityscore'] <= -6 )  :
+      return 3   ##autocracy
+   else :
+      return 0 ##unknown
+
+
+##calculate the age of NATO countries
+##data['Years_In_Nato'] = data.apply (lambda row: AGE_YEARS (row),axis=1)
+data2tsne['polityscore_cat'] = data2tsne.apply (lambda row: polityscore_cat (row),axis=1)
+         
+##drop NA values
+
+data2tsne=data2tsne.dropna()
+       
+##Explore 
+
+polityscoredata=data2tsne[['incomeperperson', 'alcconsumption', 'armedforcesrate',
+         'femaleemployrate',
+         'internetuserate', 'lifeexpectancy', 
+         'employrate',  
+         'CPI2015','World Economic Forum EOS','PRS International Country Risk Guide',
+         ]]
+
+polityscoretarget= data2tsne.polityscore_cat
+
+
+polityscoredata['incomeperperson']=preprocessing.scale(polityscoredata['incomeperperson'].astype('float64'))
+polityscoredata['alcconsumption']=preprocessing.scale(polityscoredata['alcconsumption'].astype('float64'))
+polityscoredata['armedforcesrate']=preprocessing.scale(polityscoredata['armedforcesrate'].astype('float64'))
+polityscoredata['femaleemployrate']=preprocessing.scale(polityscoredata['femaleemployrate'].astype('float64'))
+polityscoredata['internetuserate']=preprocessing.scale(polityscoredata['internetuserate'].astype('float64'))
+polityscoredata['lifeexpectancy']=preprocessing.scale(polityscoredata['lifeexpectancy'].astype('float64'))
+polityscoredata['employrate']=preprocessing.scale(polityscoredata['employrate'].astype('float64'))
+polityscoredata['CPI2015']=preprocessing.scale(polityscoredata['CPI2015'].astype('float64'))
+polityscoredata['World Economic Forum EOS']=preprocessing.scale(polityscoredata['World Economic Forum EOS'].astype('float64'))
+polityscoredata['PRS International Country Risk Guide']=preprocessing.scale(polityscoredata['PRS International Country Risk Guide'].astype('float64'))
+
+
+X_tsne = TSNE(learning_rate=100).fit_transform(polityscoredata)
+X_pca = PCA().fit_transform(polityscoredata)
+plt.scatter(X_tsne[:, 0], X_tsne[:, 1], c=polityscoretarget)
+plt.title("T-sne Plot categories Polity scores")
+
+## -SNE can help us to decide whether classes are separable in some linear or nonlinear representation. Here we can see that the 3 classes of the Iris dataset can be separated quite easily
+
+plt.scatter(X_pca[:, 0], X_pca[:, 1], c=polityscoretarget)
+plt.title("PCA 1 and 2")
+
+
+
+
+
 
