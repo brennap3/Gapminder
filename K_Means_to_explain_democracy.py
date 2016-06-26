@@ -510,7 +510,7 @@ pivoted[['0','1','2']]
 pivoted.dtypes
 pivotedplt=pivoted[['0','1','2']].reset_index()
 
-ggplot(sub1, aes(x='cluster', y='polityscore')) + geom_boxplot() +ggtitle("boxplot of Polity scores -versus-cluster (3 cluster model)")+
+ggplot(sub1, aes(x='cluster', y='polityscore')) + geom_boxplot() +ggtitle("boxplot of Polity scores -versus-cluster (3 cluster model)")
 
 ###
 #
@@ -539,6 +539,9 @@ pca.fit(data_clean2[['incomeperperson', 'alcconsumption', 'armedforcesrate',
 
 
 plt.plot(PCACUMPLOT)
+plt.title("Cumulative varaince of components against number of principal components")
+plt.xlabel("Princiapl Component")
+plt.ylabel("Cumulative varaince explain")
 
 ## wow the first two components hold more than 80% of the variance
 
@@ -669,7 +672,40 @@ merged_clust_names_country5[['country']]
 clustergrp5 = merged_clust_names_country5.groupby('cluster').mean()
 print ("Clustering variable means by cluster")
 print(clustergrp5)
+'''
+Clustering variable means by cluster
+              index  incomeperperson  alcconsumption  armedforcesrate  \
+cluster                                                                 
+0        106.210526         1.925011        0.360945        -0.191434   
+1        111.153846        -0.304801       -1.218275         1.514747   
+2        108.291667        -0.727085       -0.492013        -0.600894   
+3        102.484848        -0.503862       -0.074974        -0.272969   
+4         98.809524         0.069748        1.107717         0.351189   
 
+         femaleemployrate  internetuserate  lifeexpectancy  employrate  \
+cluster                                                                  
+0                0.255068         1.530205        1.029620    0.226588   
+1               -1.745974        -0.216228        0.192075   -1.116786   
+2                1.287686        -0.991900       -1.184508    1.312131   
+3               -0.244027        -0.502937       -0.209858   -0.197278   
+4               -0.238104         0.673314        0.633036   -0.703234   
+
+          CPI2015  World Economic Forum EOS  \
+cluster                                       
+0        1.736917                  1.701811   
+1       -0.439791                 -0.032307   
+2       -0.777429                 -0.777062   
+3       -0.532239                 -0.524499   
+4        0.425622                  0.192549   
+
+         PRS International Country Risk Guide  polityscore  
+cluster                                                     
+0                                    1.718800     0.372376  
+1                                   -0.447996    -1.310539  
+2                                   -0.655673    -0.591411  
+3                                   -0.558362     0.279227  
+4                                    0.348993     0.711488  
+'''
 
 ######
 ###
@@ -683,6 +719,8 @@ polity_score_train_cl5, polity_score_test_cl5 = train_test_split(merged_clust_na
 
 sub2 = polity_score_train_cl5[['cluster','polityscore']] 
 sub2.dtypes
+
+ggplot(sub2, aes(x='cluster', y='polityscore')) + geom_boxplot() +ggtitle("boxplot of Polity scores -versus-cluster (5 cluster model)")
 
 
 sub2['cluster_str'] = sub2['cluster'].astype(str)
