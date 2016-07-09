@@ -1245,7 +1245,6 @@ dict(zip(predictors.columns, clf.coef_))
 ## 'internetuserate': -1.5018973416359096,
 ## 'lifeexpectancy': -0.55281204171334886}
 
-
 clf2 = Ridge(alpha=0.1)
 clf2.fit(predictors, target)
 dict(zip(predictors.columns, clf2.coef_))
@@ -1273,8 +1272,6 @@ dict(zip(predictors.columns, clf2.coef_))
 ##  'incomeperperson': 1.5344769799784839,
 ##  'internetuserate': -1.7878108586327877,
 ##  'lifeexpectancy': -0.59803994190501053}
-
-
 
 clf3 = Ridge(alpha=0.6)
 clf3.fit(predictors, target)
@@ -1324,10 +1321,7 @@ model.coef_
 model.alphas
 model.get_params(y)
 
-
-
 ##try the same with  CV
-
 
 alphas = [100,10,1,0.1,0.01,0.001,0.0001]
 clf = sklearn.linear_model.Ridge(fit_intercept=False)
@@ -1356,6 +1350,7 @@ plt.axis('tight')
 plt.show()
 
 
+
 #
 
 ax = plt.gca()
@@ -1369,6 +1364,36 @@ plt.title('Coefficient error as a function of the regularization')
 plt.axis('tight')
 
 plt.show()
+
+
+
+
+# R-square from training and test data
+rsquared_train=model.score(pred_train,tar_train)
+rsquared_test=model.score(pred_test,tar_test)
+print ('training data R-square')
+print(rsquared_train)
+print ('test data R-square')
+print(rsquared_test)
+
+# mse error
+train_error = mean_squared_error(tar_train, model.predict(pred_train))
+test_error = mean_squared_error(tar_test, model.predict(pred_test))
+print ('training data MSE')
+print(train_error)
+print ('test data MSE')
+print(test_error)
+
+"""
+training data R-square
+0.721105492404
+test data R-square
+0.430309523223
+training data MSE
+9.82993773492
+test data MSE
+17.8827357742
+"""
 
 
 
